@@ -8,6 +8,9 @@ import Homepage from './pages/Homepage/Homepage'
 import PageNotFound from './pages/PageNotFound/PageNotFound'
 import { Login } from './pages/Login/Login'
 import Register from './pages/Register/Register'
+import Training from './pages/Training/Training'
+import Nutrition from './pages/Nutrition/Nutrition'
+import Supplements from './pages/Supplements/Supplements'
 
 function App() {
   const [state, setAppState] = useState({
@@ -22,6 +25,9 @@ function App() {
         <Route index element={<Homepage />} />
         <Route path='/login' element={<Login />} />
         <Route path='/register' element={<Register />} />
+        <Route path='/training' element={<Training />} />
+        <Route path='/nutrition' element={<Nutrition />} />
+        <Route path='/supplements' element={<Supplements />} />
         <Route path='*' element={<PageNotFound />} />
       </Routes>
       <Footer />
