@@ -5,6 +5,7 @@ import { Route, Routes } from 'react-router-dom'
 import Header from './components/Base/Header/Header'
 import Footer from './components/Base/Footer/Footer'
 import Homepage from './pages/Homepage'
+import PageNotFound from './pages/PageNotFound'
 
 function App() {
   const [state, setAppState] = useState({
@@ -17,6 +18,7 @@ function App() {
       <Header />
       <Routes>
         <Route index element={<Homepage />} />
+        <Route path='*' element={<PageNotFound />} />
       </Routes>
       <Footer />
     </AppContext.Provider>
