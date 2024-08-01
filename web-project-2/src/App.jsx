@@ -11,6 +11,7 @@ import Register from './pages/Register/Register'
 import Training from './pages/Training/Training'
 import Nutrition from './pages/Nutrition/Nutrition'
 import Supplements from './pages/Supplements/Supplements'
+import Container from './components/Base/Container/Container'
 
 function App() {
   const [state, setAppState] = useState({
@@ -21,6 +22,7 @@ function App() {
   return (
     <AppContext.Provider value={{ ...state, setAppState: setAppState}}>
       <Header />
+      <Container>
       <Routes>
         <Route index element={<Homepage />} />
         <Route path='/login' element={<Login />} />
@@ -30,6 +32,7 @@ function App() {
         <Route path='/supplements' element={<Supplements />} />
         <Route path='*' element={<PageNotFound />} />
       </Routes>
+      </Container>
       <Footer />
     </AppContext.Provider>
   )
