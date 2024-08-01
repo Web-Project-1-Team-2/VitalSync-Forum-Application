@@ -18,10 +18,13 @@ const Header = () => {
 
     return (
         <div className="header">
-            <NavLink to={'/'} className={"nav-link"}>Home</NavLink>
-            {user && <NavLink to={'/create'} className={"nav-link"}>Create</NavLink>}
-            {!user ? <NavLink to={'/login'} className={"nav-link"}>Login</NavLink> : <button onClick={logout} className={"nav-link"}>Logout</button>}
-            {!user && <NavLink to={'/register'} className={"nav-link"}>Register</NavLink>}
+            <div className="navigation-logo"><h3>Insert Logo here</h3></div>
+            <div className="navigation-strip">
+                <NavLink to={'/'} className={"nav-link"}>Home</NavLink>
+                {user && <NavLink to={'/create'} className={"nav-link"}>Create</NavLink>}
+                {!user ? <NavLink to={'/login'} className={"nav-link"}>Login</NavLink> : <button onClick={logout} className={"logout-btn"}>Logout</button>}
+                {!user && <NavLink to={'/register'} className={"nav-link"}>Register</NavLink>}
+            </div>
         </div>
 
     )

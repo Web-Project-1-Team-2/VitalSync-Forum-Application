@@ -20,19 +20,19 @@ function App() {
   })
 
   return (
-    <AppContext.Provider value={{ ...state, setAppState: setAppState}}>
+    <AppContext.Provider value={{ ...state, setAppState: setAppState }}>
       <Header />
       <Container>
-      <Routes>
-        <Route index element={<Homepage />} />
-        <Route path='/login' element={<Login />} />
-        <Route path='/register' element={<Register />} />
-        <Route path='/training' element={<Training />} />
-        <Route path='/nutrition' element={<Nutrition />} />
-        <Route path='/supplements' element={<Supplements />} />
-        <Route path='/create' element={<CreatePost/>} />
-        <Route path='*' element={<PageNotFound />} />
-      </Routes>
+        <Routes>
+          <Route index element={<Homepage />} />
+          <Route path='/login' element={<Login />} />
+          <Route path='/register' element={<Register />} />
+          <Route path='/training' element={<Training />} />
+          <Route path='/nutrition' element={<Nutrition />} />
+          <Route path='/supplements' element={<Supplements />} />
+          <Route path='/create' element={<CreatePost />} />
+          <Route path='*' element={<PageNotFound />} />
+        </Routes>
       </Container>
       <Footer />
     </AppContext.Provider>

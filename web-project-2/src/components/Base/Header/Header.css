@@ -6,16 +6,45 @@
     width: 100%;
     position: fixed;
     top: 0;
-    display: block;
+    display: flex;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     text-align: center;
+    justify-content: space-between;
 }
 
 .nav-link {
-    font-size: 20px;
+    font-size: 25px;
     color: #FBFEF9;
     text-decoration: none;
     margin-right: 10px;
+}
+
+.logout-btn {
+    font-family: "Bebas Neue", sans-serif;
+    font-size: 25px;
+    padding: 5px 10px;
+    background-color: #FBFEF9;
+    color: #44633f;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.navigation-strip {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    align-items: center;
+    margin-right: 40px;
+}
+
+.navigation-logo {
+    font-size: 25px;
+    margin-left: 40px;
+}
+
+.navigation-logo h3 {
+    margin: 0;
 }
 
 .nav-link:hover {
