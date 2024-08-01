@@ -6,9 +6,9 @@
     padding: 20px; 
 }
 
-.image {
+.about-image {
     width: 200px;
-    height: 200px;
+    height: auto;
 }
 
 .text {

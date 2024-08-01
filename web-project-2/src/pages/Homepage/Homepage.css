@@ -1,0 +1,13 @@
+.homepage {
+    display: flex;
+    flex-direction: row;
+    height: auto;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.links {
+    width: 300px;
+    height: auto;
+}
