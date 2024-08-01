@@ -3,14 +3,13 @@ import { createNewPost } from '../../services/post.service.js';
 import { AppContext } from '../../context/authContext.js';
 import { constrains } from "../../common/constrains.js";
 import { notifyError, notifySuccess } from "../../services/notification.service.js";
-import { getUserData } from "../../services/user.service.js";
 
 export default function CreatePost() {
     const [post, setPost] = useState({
         title: '',
         content: '',
     });
-    const { user } = useContext(AppContext);
+    const { userData } = useContext(AppContext);
 
     const updatePost = (key, value) => {
         setPost({
@@ -23,14 +22,12 @@ export default function CreatePost() {
         if (post.title.length < constrains.TITLE_MIN_LENGTH || post.title.length > constrains.TITLE_MAX_LENGTH) {
             return notifyError('Title too short!');
         }
-        if (post.content.length < 3) {
-            return alert('Content too short!');
+        if (post.content.length < constrains.CONTENT_MIN_LENGTH || post.content.length > constrains.CONTENT_MAX_LENGTH) {
+            return notifyError('Content too short!');
         }
 
         try {
-            const currUser = await getUserData(user.uid);
-            const currUsername = Object.keys(currUser)[0];
-            await createNewPost(currUsername, post.title, post.content);
+            await createNewPost(userData.username, post.title, post.content);
             notifySuccess('Post created successfully!');
             setPost({ title: '', content: '' });
         } catch (error) {

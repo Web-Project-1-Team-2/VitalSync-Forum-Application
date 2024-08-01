@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import './App.css'
 import { AppContext } from './context/authContext'
 import { Route, Routes } from 'react-router-dom'
@@ -13,15 +13,38 @@ import Nutrition from './pages/Nutrition/Nutrition'
 import Supplements from './pages/Supplements/Supplements'
 import Container from './components/Base/Container/Container'
 import CreatePost from './pages/CreatePost/CreatePost'
+import { auth } from './config/firebase-config'
+import { useAuthState } from 'react-firebase-hooks/auth'
+import LoadingHeader from './components/Base/Header/LoadingHeader'
+import { getUserData } from './services/user.service'
+
 function App() {
   const [state, setAppState] = useState({
     user: null,
     userData: null,
   })
 
+  const [user, loading] = useAuthState(auth);
+
+
+  if (state.user !== user) {
+    setAppState({ ...state, user: user })
+  }
+
+  useEffect(() => {
+    if(!user) return;
+
+    getUserData(state.user.uid)
+      .then(data => {
+        const userData = data[Object.keys(data)[0]];
+        setAppState({ ...state, userData: userData });
+      })
+  }, [user])
+
+
   return (
     <AppContext.Provider value={{ ...state, setAppState: setAppState }}>
-      <Header />
+      {loading ? <LoadingHeader /> : <Header /> }
       <Container>
         <Routes>
           <Route index element={<Homepage />} />
@@ -40,5 +63,3 @@ function App() {
 }
 
 export default App
-
-//Test
