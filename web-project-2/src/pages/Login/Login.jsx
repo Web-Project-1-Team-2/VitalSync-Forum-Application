@@ -3,6 +3,7 @@ import { loginUser } from "../../services/auth.service"
 import { AppContext } from "../../context/authContext";
 import { notifyError, notifySuccess } from "../../services/notification.service";
 import { useNavigate } from "react-router-dom";
+import './Login.css';
 
 export const Login = () => {
     const { setAppState } = useContext(AppContext);
@@ -40,14 +41,16 @@ export const Login = () => {
     }
 
     return (
-        <div>
+        <div className="login-field">
+            <h1>Login</h1>
+
             <label htmlFor="email">Email: </label>
             <input type="email" value={user.email} name="email" id="email" onChange={updateUser('email')}/> <br /><br />
 
             <label htmlFor="password">Password: </label>
             <input type="password" value={user.password} name="password" id="password" onChange={updateUser('password')} /> <br /><br />
 
-            <button onClick={login}>Login</button>
+            <button className="login-btn" onClick={login}>Login</button>
         </div>
     )
 }

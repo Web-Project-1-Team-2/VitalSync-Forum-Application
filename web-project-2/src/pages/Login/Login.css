@@ -1,0 +1,35 @@
+.login-field {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+    align-items: center;
+}
+
+.login-field label {
+    margin-bottom: 5px;
+}
+
+.login-field input {
+    padding: 10px;
+    border: 1px solid #FBFEF9;
+    border-radius: 5px;
+    width: 50%;
+    flex-grow: 0;
+}
+
+.login-btn {
+    padding: 10px 20px;
+    background-color: #5a9367;
+    color: #FBFEF9;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.login-btn:hover {
+    background-color: #44633f;
+}
+
+.login-btn > h1 {
+    color: #FBFEF9;
+}
