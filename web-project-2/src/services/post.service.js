@@ -1,13 +1,28 @@
 import { ref, push, get, update, } from 'firebase/database';
 import { db } from '../config/firebase-config'
 
-export const createpost = async (author, title, content) => {
+
+const updateCreatedPosts = async (username, postId) => {
+    const currentPosts = await get(ref(db, `users/${username}/createdPosts`));
+    console.log(currentPosts.val());
+    await update(ref(db), {[`users/${username}/createdPosts`]: {...currentPosts.val(), [postId]: true},});
+}
+
+const updatePostCount = async (username) => {
+    const currentCount = await get(ref(db, `users/${username}/postCount`))
+    console.log(currentCount.val());
+    await update(ref(db), {[`users/${username}/postCount`]: currentCount.val() + 1});
+};
+
+export const createNewPost = async (author, title, content) => {
     const post = { author, title, content, createdOn: new Date().toString() };
     const result = await push(ref(db, 'posts'), post);
     const id = result.key;
-    await update(ref(db), {
-        [`posts/${id}/id`]: id,
-    });
+    await update(ref(db), {[`posts/${id}/id`]: id,});
+
+    await updateCreatedPosts(author, id);
+
+    await updatePostCount(author);
 };
 
 export const getAllposts = async (search = '') => {

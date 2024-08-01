@@ -32,6 +32,8 @@ export const Login = () => {
                 user: credential.user,
                 userData: null,
             });
+
+            console.log(credential);
             
             notifySuccess('Login successful, redirecting to home page');
             setTimeout(() => { navigate('/') }, 2000);

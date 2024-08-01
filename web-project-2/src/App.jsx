@@ -12,7 +12,7 @@ import Training from './pages/Training/Training'
 import Nutrition from './pages/Nutrition/Nutrition'
 import Supplements from './pages/Supplements/Supplements'
 import Container from './components/Base/Container/Container'
-
+import CreatePost from './pages/CreatePost/CreatePost'
 function App() {
   const [state, setAppState] = useState({
     user: null,
@@ -30,6 +30,7 @@ function App() {
         <Route path='/training' element={<Training />} />
         <Route path='/nutrition' element={<Nutrition />} />
         <Route path='/supplements' element={<Supplements />} />
+        <Route path='/create' element={<CreatePost/>} />
         <Route path='*' element={<PageNotFound />} />
       </Routes>
       </Container>

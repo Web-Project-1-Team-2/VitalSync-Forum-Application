@@ -1,32 +1,38 @@
 import { useContext, useState } from "react"
-import { createpost } from "../services/post-service.js";
-import { AppContext } from "../context/authContext.js";
+import { createNewPost } from '../../services/post.service.js';
+import { AppContext } from '../../context/authContext.js';
+import { constrains } from "../../common/constrains.js";
+import { notifyError, notifySuccess } from "../../services/notification.service.js";
+import { getUserData } from "../../services/user.service.js";
 
 export default function CreatePost() {
-    const [post, setpost] = useState({
+    const [post, setPost] = useState({
         title: '',
         content: '',
     });
-    const { userData } = useContext(AppContext);
+    const { user } = useContext(AppContext);
 
     const updatePost = (key, value) => {
-        setpost({
+        setPost({
             ...post,
             [key]: value,
         });
     };
 
     const handleCreatePost = async () => {
-        if (post.title.length < 3) {
-            return alert('Title too short!');
+        if (post.title.length < constrains.TITLE_MIN_LENGTH || post.title.length > constrains.TITLE_MAX_LENGTH) {
+            return notifyError('Title too short!');
         }
         if (post.content.length < 3) {
             return alert('Content too short!');
         }
 
         try {
-            await createpost(userData.handle, post.title, post.content);
-            setpost({ title: '', content: '' });
+            const currUser = await getUserData(user.uid);
+            const currUsername = Object.keys(currUser)[0];
+            await createNewPost(currUsername, post.title, post.content);
+            notifySuccess('Post created successfully!');
+            setPost({ title: '', content: '' });
         } catch (error) {
             alert(error.message);
         }
