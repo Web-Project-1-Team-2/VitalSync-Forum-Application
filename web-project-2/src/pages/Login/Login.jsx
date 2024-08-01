@@ -22,7 +22,7 @@ export const Login = () => {
     };
 
     const login = async () => {
-        if(!user.email || user.email.includes('@') === false){
+        if (!user.email || user.email.includes('@') === false) {
             notifyError('Please enter a valid email')
         }
 
@@ -34,7 +34,7 @@ export const Login = () => {
             });
 
             console.log(credential);
-            
+
             notifySuccess('Login successful, redirecting to home page');
             setTimeout(() => { navigate('/') }, 2000);
         } catch (error) {
@@ -45,13 +45,17 @@ export const Login = () => {
     return (
         <div className="login-field">
             <h1>Login</h1>
+            <div className="login-grid">
+                <div className="email-grid">
+                    <label htmlFor="email">Email: </label>
+                    <input type="email" value={user.email} name="email" id="email" onChange={updateUser('email')} /> <br /><br />
+                </div>
 
-            <label htmlFor="email">Email: </label>
-            <input type="email" value={user.email} name="email" id="email" onChange={updateUser('email')}/> <br /><br />
-
-            <label htmlFor="password">Password: </label>
-            <input type="password" value={user.password} name="password" id="password" onChange={updateUser('password')} /> <br /><br />
-
+                <div className="password-grid">
+                    <label htmlFor="password">Password: </label>
+                    <input type="password" value={user.password} name="password" id="password" onChange={updateUser('password')} /> <br /><br />
+                </div>
+            </div>
             <button className="login-btn" onClick={login}>Login</button>
         </div>
     )

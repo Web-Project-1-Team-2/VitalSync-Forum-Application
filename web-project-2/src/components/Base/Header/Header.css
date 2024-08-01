@@ -30,6 +30,10 @@
     cursor: pointer;
 }
 
+.logout-btn:hover {
+    background-color: #bfc2bd;
+}
+
 .navigation-strip {
     display: flex;
     justify-content: center;

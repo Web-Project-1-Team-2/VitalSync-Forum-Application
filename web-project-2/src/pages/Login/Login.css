@@ -1,24 +1,36 @@
 .login-field {
     display: flex;
     flex-direction: column;
-    margin-bottom: 20px;
     align-items: center;
+    width: 100%;
+}
+
+.login-grid {
+    width: 50%;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(2, 1fr);
+    gap: 20px;
+    margin-bottom: 25px;;
 }
 
 .login-field label {
     margin-bottom: 5px;
+    font-size: 20px;
+    display: block;
 }
 
-.login-field input {
+.login-grid input {
     padding: 10px;
     border: 1px solid #FBFEF9;
     border-radius: 5px;
-    width: 50%;
-    flex-grow: 0;
+    width: -webkit-fill-available;
 }
 
 .login-btn {
-    padding: 10px 20px;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 20px;
+    padding: 10px 30px;
     background-color: #5a9367;
     color: #FBFEF9;
     border: none;

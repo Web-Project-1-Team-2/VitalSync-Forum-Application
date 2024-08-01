@@ -106,22 +106,31 @@ const Register = () => {
     return (
         <div className="register-field">
             <h1>Register</h1>
+            <div className="registration-grid">
+                <div className="username-grid">
+                    <label htmlFor="username">Username: </label>
+                    <input type="text" value={user.username} name="username" id="username" onChange={updateUser('username')} />
+                </div>
+                <div className="names-grid">
+                    <div className="first-name-grid">
+                        <label htmlFor="firstName">First Name: </label>
+                        <input type="text" value={user.firstName} name="firstName" id="firstName" onChange={updateUser('firstName')} />
+                    </div>
 
-            <label htmlFor="username">Username: </label>
-            <input type="text" value={user.username} name="username" id="username" onChange={updateUser('username')} /> <br /><br />
-
-            <label htmlFor="firstName">First Name: </label>
-            <input type="text" value={user.firstName} name="firstName" id="firstName" onChange={updateUser('firstName')} /> <br /><br />
-
-            <label htmlFor="lastName">Last Name: </label>
-            <input type="text" value={user.lastName} name="lastName" id="lastName" onChange={updateUser('lastName')} /> <br /><br />
-
-            <label htmlFor="email">Email: </label>
-            <input type="email" value={user.email} name="email" id="email" onChange={updateUser('email')} /> <br /><br />
-
-            <label htmlFor="password">Password: </label>
-            <input type="password" value={user.password} name="password" id="password" onChange={updateUser('password')} /> <br /><br />
-
+                    <div className="last-name-grid">
+                        <label htmlFor="lastName">Last Name: </label>
+                        <input type="text" value={user.lastName} name="lastName" id="lastName" onChange={updateUser('lastName')} />
+                    </div>
+                </div>
+                <div className="email-grid">
+                    <label htmlFor="email">Email: </label>
+                    <input type="email" value={user.email} name="email" id="email" onChange={updateUser('email')} />
+                </div>
+                <div className="password-grid">
+                    <label htmlFor="password">Password: </label>
+                    <input type="password" value={user.password} name="password" id="password" onChange={updateUser('password')} />
+                </div>
+            </div>
             <button className="register-btn" onClick={register}>Register</button>
         </div>
     )

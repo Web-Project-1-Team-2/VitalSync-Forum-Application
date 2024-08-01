@@ -1,11 +1,17 @@
 .container {
-    width: 1400px;
-    min-width: 50%;
+    min-width: 1400px;
+    max-width: 1500px;
+    min-height: 600px;
     height: auto;
-    background-color: #000000;
+    background-color: #171b16;
     margin: 0 auto;
     margin-top: 120px;
     margin-bottom: 50px;
     padding: 30px;
     border-radius: 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;    
 }
+
+/* #232921 */
