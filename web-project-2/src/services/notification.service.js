@@ -12,7 +12,7 @@ export const notifyError = (message) => toast.error(message, {
     transition: Bounce,
 });
 
-export const notiftySuccess = (message) => toast.success(message, {
+export const notifySuccess = (message) => toast.success(message, {
     position: "bottom-right",
     autoClose: 2000,
     hideProgressBar: false,

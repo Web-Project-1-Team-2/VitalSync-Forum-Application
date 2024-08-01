@@ -1,7 +1,7 @@
 import { useContext, useState } from "react";
 import { loginUser } from "../../services/auth.service"
 import { AppContext } from "../../context/authContext";
-import { notifyError, notiftySuccess } from "../../services/notification.service";
+import { notifyError, notifySuccess } from "../../services/notification.service";
 import { useNavigate } from "react-router-dom";
 
 export const Login = () => {
@@ -26,16 +26,16 @@ export const Login = () => {
         }
 
         try {
-            const response = await loginUser(user.email, user.password);
+            const credential = await loginUser(user.email, user.password);
             setAppState({
-                user: response.user,
+                user: credential.user,
                 userData: null,
             });
             
-            notiftySuccess('Login successful, redirecting to home page');
+            notifySuccess('Login successful, redirecting to home page');
             setTimeout(() => { navigate('/') }, 2000);
         } catch (error) {
-            alert(error.message);
+            notifyError(error.message);
         }
     }
 
