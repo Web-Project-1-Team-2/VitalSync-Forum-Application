@@ -4,11 +4,11 @@
     height: 85%;
     align-items: center;
     justify-content: center;
-    gap: 2.5rem;
+    gap: 3.5rem;
     text-align: center;
 }
 
 .links {
-    width: 150px;
-    height: 150px;
+    width: 200px;
+    height: 200px;
 }
