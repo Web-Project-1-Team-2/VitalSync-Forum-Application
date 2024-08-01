@@ -20,10 +20,10 @@ export default function CreatePost() {
     };
 
     const handleCreatePost = async () => {
-        if (post.title.length < constrains.TITLE_MIN_LENGTH || post.title.length > constrains.TITLE_MAX_LENGTH) {
+        if (post.title.length < constrains.POST_TITTLE_MIN_LENGTH || post.title.length > constrains.POST_TITTLE_MAX_LENGTH) {
             return notifyError('Title too short!');
         }
-        if (post.content.length < constrains.CONTENT_MIN_LENGTH || post.content.length > constrains.CONTENT_MAX_LENGTH) {
+        if (post.content.length < constrains.POST_CONTENT_MIN_LENGTH || post.content.length > constrains.POST_CONTENT_MAX_LENGTH) {
             return notifyError('Content too short!');
         }
 
