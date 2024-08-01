@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 import { notifySuccess, notifyError } from "../../services/notification.service";
 import { createUser, getUserByUsername } from "../../services/user.service";
 import { constrains } from "../../common/constrains";
+import './Register.css';
 
 
 const Register = () => {
@@ -29,7 +30,7 @@ const Register = () => {
 
     const register = async () => {
 
-        if(!user.firstName && !user.lastName && !user.email && !user.password){
+        if (!user.firstName && !user.lastName && !user.email && !user.password) {
             notifyError('Please fill in all fields');
             return;
         }
@@ -59,7 +60,7 @@ const Register = () => {
         }
         if (!user.email || user.email.includes('@') === false) {
             notifyError('Please enter a valid email')
-  
+
             return;
         }
         if (!user.password.split('').some(char => char !== ' ' && !isNaN(char))) {
@@ -72,7 +73,7 @@ const Register = () => {
         }
 
         const dbUser = await getUserByUsername(user.username);
-        if (dbUser.exists() || dbUser.username === user.username || dbUser.email === user.email){
+        if (dbUser.exists() || dbUser.username === user.username || dbUser.email === user.email) {
             notifyError('User already exists');
             setAppState({
                 username: '',
@@ -103,7 +104,7 @@ const Register = () => {
     }
 
     return (
-        <div>
+        <div className="register-field">
             <h1>Register</h1>
 
             <label htmlFor="username">Username: </label>
@@ -121,7 +122,7 @@ const Register = () => {
             <label htmlFor="password">Password: </label>
             <input type="password" value={user.password} name="password" id="password" onChange={updateUser('password')} /> <br /><br />
 
-            <button onClick={register}>Register</button>
+            <button className="register-btn" onClick={register}>Register</button>
         </div>
     )
 }

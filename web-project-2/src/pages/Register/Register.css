@@ -1,0 +1,39 @@
+.register-field {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+    width: 1440px;
+    height: auto;
+    background-color: black;
+    align-items: center;
+    padding: 30px;
+}
+
+.register-field label {
+    margin-bottom: 5px;
+}
+
+.register-field input {
+    padding: 10px;
+    border: 1px solid #FBFEF9;
+    border-radius: 5px;
+    width: 50%;
+    flex-grow: 0;
+}
+
+.register-btn {
+    padding: 10px 20px;
+    background-color: #5a9367;
+    color: #FBFEF9;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.register-btn:hover {
+    background-color: #44633f;
+}
+
+.register-btn > h1 {
+    color: #FBFEF9;
+}

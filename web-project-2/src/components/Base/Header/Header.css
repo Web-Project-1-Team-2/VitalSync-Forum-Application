@@ -1,0 +1,21 @@
+/* Header.css */
+
+.header {
+    background-color: #44633f;
+    padding: 20px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+}
+
+.nav-link {
+    font-size: 20px;
+    color: #FBFEF9;
+    text-decoration: none;
+    margin-right: 10px;
+}
+
+.nav-link:hover {
+    color: #bfc2bd;
+}
