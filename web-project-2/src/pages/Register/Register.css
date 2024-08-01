@@ -34,6 +34,7 @@
     border: 1px solid #FBFEF9;
     border-radius: 5px;
     width: -webkit-fill-available;
+    font-size: 15px;
 }
 
 .register-btn {

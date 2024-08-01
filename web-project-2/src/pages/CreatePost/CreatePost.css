@@ -1,26 +1,25 @@
-.login-field {
+.create-field {
     display: flex;
     flex-direction: column;
     align-items: center;
     width: 100%;
 }
 
-.login-grid {
+.create-grid {
     width: 50%;
     display: grid;
     grid-template-columns: 1fr;
-    grid-template-rows: repeat(2, 1fr);
+    grid-template-rows: 1fr 2fr;
     gap: 20px;
     margin-bottom: 25px;;
 }
 
-.login-field label {
-    margin-bottom: 5px;
-    font-size: 20px;
+.create-grid label {
     display: block;
+    font-size: 20px;
 }
 
-.login-grid input {
+.create-grid input {
     padding: 10px;
     border: 1px solid #FBFEF9;
     border-radius: 5px;
@@ -28,10 +27,20 @@
     font-size: 15px;
 }
 
-.login-btn {
+.create-grid textarea {
+    padding: 10px;
+    border: 1px solid #FBFEF9;
+    border-radius: 5px;
+    height: 100px;
+    width: -webkit-fill-available;
+    resize: none;
+    font-size: 15px;
+}
+
+.create-btn {
     font-family: 'Bebas Neue', sans-serif;
     font-size: 20px;
-    padding: 10px 30px;
+    padding: 10px 20px;
     background-color: #5a9367;
     color: #FBFEF9;
     border: none;
@@ -39,10 +48,10 @@
     cursor: pointer;
 }
 
-.login-btn:hover {
+.create-btn:hover {
     background-color: #44633f;
 }
 
-.login-btn > h1 {
+.create-btn > h1 {
     color: #FBFEF9;
 }

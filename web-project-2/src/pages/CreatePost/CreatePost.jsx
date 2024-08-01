@@ -3,6 +3,7 @@ import { createNewPost } from '../../services/post.service.js';
 import { AppContext } from '../../context/authContext.js';
 import { constrains } from "../../common/constrains.js";
 import { notifyError, notifySuccess } from "../../services/notification.service.js";
+import './CreatePost.css';
 
 export default function CreatePost() {
     const [post, setPost] = useState({
@@ -36,13 +37,20 @@ export default function CreatePost() {
     };
 
     return (
-        <div>
+        <div className="create-field">
             <h1>Create post</h1>
-            <label htmlFor="title">Title: </label>
-            <input value={post.title} onChange={e => updatePost('title', e.target.value)} type="text" name="title" id="title" /><br />
-            <label htmlFor="content">Content: </label>
-            <textarea value={post.content} onChange={e => updatePost('content', e.target.value)} name="content" id="content" /><br /><br />
-            <button onClick={handleCreatePost}>Create</button>
+            <div className="create-grid">
+                <div className="title-grid">
+                    <label htmlFor="title">Title: </label>
+                    <input value={post.title} onChange={e => updatePost('title', e.target.value)} type="text" name="title" id="title" />
+                </div>
+
+                <div className="content-grid">
+                    <label htmlFor="content">Content: </label>
+                    <textarea value={post.content} onChange={e => updatePost('content', e.target.value)} name="content" id="content" />
+                </div>
+            </div>
+            <button onClick={handleCreatePost} className="create-btn">Create</button>
         </div>
     )
 }
