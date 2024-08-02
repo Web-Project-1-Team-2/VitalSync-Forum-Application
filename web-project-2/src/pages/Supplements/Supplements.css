@@ -1,0 +1,27 @@
+.supplements-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+  }
+  
+  .image {
+    width: 30%;
+    height: auto;
+  }
+  
+  .text {
+    text-align: center;
+    margin: 0 20px;
+    flex: 1; /* Allow text to take up remaining space */
+  }
+  
+  .text h1 {
+    font-size: 36px;
+    margin: 0;
+  }
+  
+  .text h3 {
+    font-size: 18px;
+    margin: 0;
+  }
