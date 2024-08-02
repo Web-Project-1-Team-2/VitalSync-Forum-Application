@@ -18,6 +18,7 @@ import { auth } from './config/firebase-config'
 import { useAuthState } from 'react-firebase-hooks/auth'
 import LoadingHeader from './components/Base/Header/LoadingHeader'
 import { getUserData } from './services/user.service'
+import Posts from './pages/Posts/Posts'
 
 function App() {
   const [state, setAppState] = useState({
@@ -52,6 +53,7 @@ function App() {
           <Route path='/login' element={<Login />} />
           <Route path='/register' element={<Register />} />
           <Route path='/training' element={<Training />} />
+          <Route path='/posts' element={<Posts />} />
           <Route path='/nutrition' element={<Nutrition />} />
           <Route path='/supplements' element={<Supplements />} />
           <Route path='/create' element={<CreatePost />} />

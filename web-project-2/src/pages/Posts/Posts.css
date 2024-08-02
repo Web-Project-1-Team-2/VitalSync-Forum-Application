@@ -1,0 +1,48 @@
+.post-page {
+    width: 100%;
+}
+
+.post-page > h1 {
+    font-size: 40px;
+    margin: 20px 0;
+}
+
+.post-grid {
+    display: grid;
+    grid-template-columns: 3fr 1fr;
+    gap: 30px;
+}
+
+.post-box {
+    background-color: #323b2f;
+    color: #FBFEF9;
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
+.title-box {
+    padding: 10px;
+    border-bottom: solid 2px #FBFEF9;
+}
+
+.title-box h2 {
+    font-size: 30px;
+    margin: 10px 0;
+}
+
+.content-box {
+    padding: 15px;
+}
+
+.content-box p {
+    font-size: 15px;
+}
+
+#filters{
+    width: 100%;
+    background-color: #323b2f;
+    color: #FBFEF9;
+    border-radius: 8px;
+    height: 400px;
+}

@@ -21,6 +21,7 @@ const Header = () => {
             <div className="navigation-logo"><h3>Insert Logo here</h3></div>
             <div className="navigation-strip">
                 <NavLink to={'/'} className={"nav-link"}>Home</NavLink>
+                {user && <NavLink to={'/posts'} className={"nav-link"}>Posts</NavLink>}
                 {user && <NavLink to={'/create'} className={"nav-link"}>Create</NavLink>}
                 {!user ? <NavLink to={'/login'} className={"nav-link"}>Login</NavLink> : <button onClick={logout} className={"logout-btn"}>Logout</button>}
                 {!user && <NavLink to={'/register'} className={"nav-link"}>Register</NavLink>}

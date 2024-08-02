@@ -25,7 +25,7 @@ export const createNewPost = async (author, title, content) => {
     await updatePostCount(author);
 };
 
-export const getAllposts = async (search = '') => {
+export const getAllPosts = async (search = '') => {
     const snapshot = await get(ref(db, 'posts'));
     if (!snapshot.exists()) return [];
 
