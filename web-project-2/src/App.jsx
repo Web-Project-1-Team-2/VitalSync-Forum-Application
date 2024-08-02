@@ -34,6 +34,7 @@ function App() {
     setAppState({ ...state, user: user })
   }
 
+
   useEffect(() => {
     if(!user) return;
 
@@ -43,7 +44,7 @@ function App() {
         setAppState({ ...state, userData: userData });
       })
   }, [user])
-
+  
 
   return (
     <AppContext.Provider value={{ ...state, setAppState: setAppState }}>

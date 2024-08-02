@@ -35,7 +35,7 @@ const Posts = () => {
                                     <p>{post.content}</p>
                                 </div>
                             </div>
-                            <div>
+                            <div id='details-btn'>
                                 <button onClick={() => navigate(`/posts/${post.id}`)}> View Details</button>
                             </div>
 

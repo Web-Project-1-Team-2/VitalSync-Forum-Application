@@ -36,6 +36,7 @@ const DetailedPost = () => {
                 </div>
                 <div className='detailed-author'>
                     <h3>Author: {currPost.author}</h3>
+                    <h4>Category: {currPost.category}</h4>
                 </div>
                 <div className='detailed-content'>
                     <p>{currPost.content}</p>

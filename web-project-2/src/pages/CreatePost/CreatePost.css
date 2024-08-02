@@ -26,6 +26,7 @@
     border-radius: 5px;
     width: -webkit-fill-available;
     font-size: 15px;
+    font-family: 'Bebas Neue', sans-serif;
 }
 
 .create-grid textarea {
@@ -36,6 +37,7 @@
     width: -webkit-fill-available;
     resize: none;
     font-size: 15px;
+    font-family: 'Bebas Neue', sans-serif;
 }
 
 .create-btn {
@@ -67,4 +69,15 @@
 .category-grid select {
     width: 100%;
     padding: 5px;
+}
+
+.category-grid option {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 15px;
+}
+
+.category-grid select {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 15px;
+    background-color: #121212;
 }

@@ -1,5 +1,6 @@
 import { ref, push, get, update, } from 'firebase/database';
-import { db } from '../config/firebase-config'
+import { db } from '../config/firebase-config';
+import { notifySuccess } from './notification.service';
 
 
 const updateCreatedPosts = async (username, postId) => {
