@@ -1,6 +1,6 @@
 import './Supplements.css'
 
-function Nutrition() {
+function Supplements() {
     return (
       <div className="supplements-container">
         <img src="/supplements.png" alt="Supplement picture" className="image" />
@@ -18,4 +18,4 @@ function Nutrition() {
     );
   }
   
-  export default Nutrition;
+  export default Supplements;
