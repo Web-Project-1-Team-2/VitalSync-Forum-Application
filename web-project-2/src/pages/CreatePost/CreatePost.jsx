@@ -1,7 +1,7 @@
 import { useContext, useState } from "react"
 import { createNewPost } from '../../services/post.service.js';
 import { AppContext } from '../../context/authContext.js';
-import { constrains } from "../../common/constrains.js";
+import { constrains, CATEGORIES } from "../../common/constrains.js";
 import { notifyError, notifySuccess } from "../../services/notification.service.js";
 import './CreatePost.css';
 
@@ -9,6 +9,7 @@ export default function CreatePost() {
     const [post, setPost] = useState({
         title: '',
         content: '',
+        category: '',
     });
     const { userData } = useContext(AppContext);
 
@@ -26,11 +27,13 @@ export default function CreatePost() {
         if (post.content.length < constrains.POST_CONTENT_MIN_LENGTH || post.content.length > constrains.POST_CONTENT_MAX_LENGTH) {
             return notifyError('Content too short!');
         }
-
+        if (!post.category) {
+            return notifyError('Please select a category');
+        }
         try {
-            await createNewPost(userData.username, post.title, post.content);
+            await createNewPost(userData.username, post.title, post.content, post.category);
             notifySuccess('Post created successfully!');
-            setPost({ title: '', content: '' });
+            setPost({ title: '', content: '', category: '' });
         } catch (error) {
             alert(error.message);
         }
@@ -44,10 +47,25 @@ export default function CreatePost() {
                     <label htmlFor="title">Title: </label>
                     <input value={post.title} onChange={e => updatePost('title', e.target.value)} type="text" name="title" id="title" />
                 </div>
-
                 <div className="content-grid">
                     <label htmlFor="content">Content: </label>
                     <textarea value={post.content} onChange={e => updatePost('content', e.target.value)} name="content" id="content" />
+                </div>
+                <div className="category-grid">
+                    <label htmlFor="category">Category: </label>
+                    <select
+                        value={post.category}
+                        onChange={e => updatePost('category', e.target.value)}
+                        name="category"
+                        id="category"
+                    >
+                        <option value="">Select a category</option>
+                        {CATEGORIES.map((cat) => (
+                            <option key={cat.id} value={cat.id}>
+                                {cat.name}
+                            </option>
+                        ))}
+                    </select>
                 </div>
             </div>
             <button onClick={handleCreatePost} className="create-btn">Create</button>

@@ -9,3 +9,9 @@ export const constrains = {
     POST_CONTENT_MAX_LENGTH: 8192,
     POST_CONTENT_MIN_LENGTH: 32,
 }
+
+export const CATEGORIES = [
+    { id: 'training', name: 'Training and Sport' },
+    { id: 'nutrition', name: 'Nutrition' },
+    { id: 'supplements', name: 'Supplements' }
+];
