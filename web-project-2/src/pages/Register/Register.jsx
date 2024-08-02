@@ -73,7 +73,7 @@ const Register = () => {
         }
 
         const dbUser = await getUserByUsername(user.username);
-        if (dbUser.exists() || dbUser.username === user.username || dbUser.email === user.email) {
+        if (dbUser || dbUser.username === user.username || dbUser.email === user.email) {
             notifyError('User already exists');
             setAppState({
                 username: '',
