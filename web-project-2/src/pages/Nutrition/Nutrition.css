@@ -13,7 +13,7 @@
   .text {
     text-align: center;
     margin: 0 20px;
-    flex: 1; /* Allow text to take up remaining space */
+    flex: 1; 
   }
   
   .text h1 {
