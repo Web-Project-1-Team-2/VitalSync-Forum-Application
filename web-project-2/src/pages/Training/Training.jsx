@@ -1,21 +1,67 @@
+import { useEffect, useState } from 'react';
 import './Training.css'
+import { useListVals } from 'react-firebase-hooks/database';
+import { db } from '../../config/firebase-config';
+import { ref } from 'firebase/database';
+import { useNavigate } from 'react-router-dom';
 
-function Training () {
-    return (
-      <div className="training-container">
-        <img src="/athlete.jpg" alt="Training picture" className="image" />
-        
+function Training() {
+  const [posts, setPosts] = useState([]);
+  const [snapshots, loading, error] = useListVals(ref(db, 'posts'));
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (snapshots) {
+      setPosts([...snapshots]);
+    }
+  }, [snapshots]);
+
+  return (
+    <div className="training-container">
+      
+      <div className="top-grid">
+        <img src="/athlete.jpg" alt="Training" className="image" />
         <div className="text">
           <h1>Everything you need to know about Training</h1>
-          <h3>Here you will find information about training programs, different
-              excercices and topics from the top coaches in the fitness industry.
-              Feel free to Post, share and like!
+          {loading && <h2>Loading...</h2>}
+          <h3>
+            Here you will find information about training programs, different
+            exercises, and topics from the top coaches in the fitness industry.
+            Feel free to post, share and like!
           </h3>
         </div>
-  
-        <img src="/training2.avif" alt="Training picture" className="image" />
+        <img src="/training2.avif" alt="Training" className="image" />
       </div>
-    );
-  }
-  
-  export default Training;
+
+      
+      <div className="training-grid">
+        {posts.filter(post => post.category === 'training').length !== 0 ? (
+          posts
+            .filter(post => post.category === 'training')
+            .map(post => (
+              <div key={post.id} className="post-box">
+                <div>
+                  <div className="title-box">
+                    <h2>{post.title}</h2>
+                    <h4>Author: {post.author}</h4>
+                  </div>
+                  <div className="content-box">
+                    <p>{post.content}</p>
+                  </div>
+                </div>
+                <div id="details-btn">
+                  <button onClick={() => navigate(`/posts/${post.id}`)}>
+                    View Details
+                  </button>
+                </div>
+              </div>
+            ))
+        ) : (
+          <h2>No posts found</h2>
+        )}
+      </div>
+    </div>
+  );
+}
+
+export default Training;
