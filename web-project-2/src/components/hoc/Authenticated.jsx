@@ -7,7 +7,9 @@ const Authenticated = ({ children }) => {
 
     const { user } = useContext(AppContext);
     const location = useLocation()
-    if (!user) return <Navigate replace to='/login' state={{from: location }} />
+    // if (!user) {
+    //     return <Navigate replace to='/login' state={{ from: location }} />
+    // }
 
     return (
         <>
@@ -17,7 +19,7 @@ const Authenticated = ({ children }) => {
 }
 
 Authenticated.propTypes = {
-    children: PropTypes.node.isRequired
+    children: PropTypes.node.isRequired,
 };
 
 export default Authenticated

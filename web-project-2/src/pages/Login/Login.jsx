@@ -34,8 +34,6 @@ export const Login = () => {
                 userData: null,
             });
 
-            console.log(credential);
-
             setTimeout(() => { navigate(location.state?.from.pathname ?? '/') }, 1000);
             notifySuccess('Login successful, redirecting!');
         } catch (error) {
