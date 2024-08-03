@@ -21,7 +21,7 @@ function Homepage() {
                 <img src='/athlete.jpg' alt='Go to training picture' className="links" />
             </NavLink>
             <NavLink to='/nutrition' onClick={handleLinkClick}>
-                <img src='/nutrition.webp' alt='Go to nutrition picture' className="links" />
+                <img src='/nutrition3.webp' alt='Go to nutrition picture' className="links" />
             </NavLink>
             <NavLink to='/supplements' onClick={handleLinkClick}>
                 <img src='/supplements.png' alt='Go to supplements picture' className="links" />

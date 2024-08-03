@@ -20,7 +20,7 @@ function Nutrition() {
       <div className="nutrition-container">
       
       <div className="top-grid">
-      <img src="/nutrition.webp" alt="Nutrition picture" className="image" />
+      <img src="/nutrition3.webp" alt="Nutrition picture" className="image" />
         <div className="text">
           <h1>Everything you need to know about Nutrition</h1>
           {loading && <h2>Loading...</h2>}
