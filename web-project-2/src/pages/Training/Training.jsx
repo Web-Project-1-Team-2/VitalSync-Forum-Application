@@ -7,7 +7,7 @@ import { useNavigate } from 'react-router-dom';
 
 function Training() {
   const [posts, setPosts] = useState([]);
-  const [snapshots, loading, error] = useListVals(ref(db, 'posts'));
+  const [snapshots, loading] = useListVals(ref(db, 'posts'));
   const navigate = useNavigate();
 
   useEffect(() => {
