@@ -2,7 +2,7 @@
 import { useContext, useState } from "react";
 import { AppContext } from "../../context/authContext";
 import { registerUser } from "../../services/auth.service";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { notifySuccess, notifyError } from "../../services/notification.service";
 import { createUser, getUserByUsername } from "../../services/user.service";
 import { constrains } from "../../common/constrains";
@@ -12,6 +12,7 @@ import './Register.css';
 const Register = () => {
     const { setAppState } = useContext(AppContext);
     const navigate = useNavigate();
+    const location = useLocation();
 
     const [user, setUser] = useState({
         username: '',
@@ -97,7 +98,7 @@ const Register = () => {
             console.log(credential);
 
             notifySuccess('Registration successful, redirecting to home page');
-            setTimeout(() => { navigate('/') }, 2000);
+            setTimeout(() => { navigate(location.state?.from.pathname ?? '/') }, 1000);
         } catch (error) {
             console.log(error);
             notifyError(error.message);

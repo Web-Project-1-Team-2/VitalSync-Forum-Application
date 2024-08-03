@@ -2,12 +2,13 @@ import { useContext, useState } from "react";
 import { loginUser } from "../../services/auth.service"
 import { AppContext } from "../../context/authContext";
 import { notifyError, notifySuccess } from "../../services/notification.service";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import './Login.css';
 
 export const Login = () => {
     const { setAppState } = useContext(AppContext);
     const navigate = useNavigate();
+    const location = useLocation();
 
     const [user, setUser] = useState({
         email: '',
@@ -35,8 +36,8 @@ export const Login = () => {
 
             console.log(credential);
 
-            notifySuccess('Login successful, redirecting to home page');
-            setTimeout(() => { navigate('/') }, 2000);
+            setTimeout(() => { navigate(location.state?.from.pathname ?? '/') }, 1000);
+            notifySuccess('Login successful, redirecting!');
         } catch (error) {
             notifyError(error.message);
         }
@@ -57,6 +58,7 @@ export const Login = () => {
                 </div>
             </div>
             <button className="login-btn" onClick={login}>Login</button>
+            <button id="login-redirect" onClick={() => navigate('/register')}> No registration? Get one now!</button>
         </div>
     )
 }

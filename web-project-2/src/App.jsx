@@ -20,6 +20,7 @@ import LoadingHeader from './components/Base/Header/LoadingHeader'
 import { getUserData } from './services/user.service'
 import Posts from './pages/Posts/Posts'
 import DetailedPost from './pages/DetailedPost/DetailedPost'
+import Authenticated from './components/hoc/Authenticated'
 
 function App() {
   const [state, setAppState] = useState({
@@ -55,11 +56,11 @@ function App() {
           <Route path='/login' element={<Login />} />
           <Route path='/register' element={<Register />} />
           <Route path='/training' element={<Training />} />
-          <Route path='/posts' element={<Posts />} />
-          <Route path='/posts/:id' element={<DetailedPost />} />
+          <Route path='/posts' element={<Authenticated><Posts /></Authenticated>} />
+          <Route path='/posts/:id' element={<Authenticated><DetailedPost /></Authenticated>} />
           <Route path='/nutrition' element={<Nutrition />} />
           <Route path='/supplements' element={<Supplements />} />
-          <Route path='/create' element={<CreatePost />} />
+          <Route path='/create' element={<Authenticated><CreatePost /></Authenticated>} />
           <Route path='*' element={<PageNotFound />} />
         </Routes>
       </Container>

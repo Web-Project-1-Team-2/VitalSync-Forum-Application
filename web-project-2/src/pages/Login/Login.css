@@ -37,6 +37,7 @@
     border: none;
     border-radius: 5px;
     cursor: pointer;
+    margin-bottom: 10px;
 }
 
 .login-btn:hover {
@@ -45,4 +46,16 @@
 
 .login-btn > h1 {
     color: #FBFEF9;
+}
+
+#login-redirect {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 20px;
+    padding: 10px 30px;
+    background-color:#5a936700;
+    color: #FBFEF9;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-bottom: 10px;
 }
