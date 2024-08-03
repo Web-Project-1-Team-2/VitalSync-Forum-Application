@@ -4,6 +4,8 @@ import { db } from '../../config/firebase-config';
 import { ref } from 'firebase/database';
 import { useContext, useEffect, useState } from 'react';
 import { AppContext } from '../../context/authContext';
+import { deletePost } from '../../services/post.service';
+import { notifyError, notifySuccess } from '../../services/notification.service';
 
 const DetailedPost = () => {
 
@@ -26,6 +28,16 @@ const DetailedPost = () => {
         if (!post) return;
         setCurrPost({ ...post });
     }, [post])
+
+    const deleteCurrPost = async () => {
+        try {
+            await deletePost(userData.username, id);
+            notifySuccess('Post deleted successfully!');
+        } catch (error) {
+            console.log(error.message);
+            notifyError('Error deleting post!');
+        }
+    };
     
     return (
         <div>
@@ -51,7 +63,7 @@ const DetailedPost = () => {
                 <h2>Comments</h2>
             </div>
 
-            {Object.keys(data.createdPosts).includes(id) || data.level === 'Admin' ? <button>Delete</button> : null}
+            {Object.keys(data.createdPosts).includes(id) || data.level === 'Admin' ? <button onClick={deleteCurrPost}>Delete</button> : null}
         </div>
     )
 }

@@ -43,8 +43,8 @@ function App() {
         const userData = data[Object.keys(data)[0]];
         setAppState({ ...state, userData: userData });
       })
-  }, [user])
-  
+  }, [user, state.userData])
+
 
   return (
     <AppContext.Provider value={{ ...state, setAppState: setAppState }}>
