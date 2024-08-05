@@ -12,6 +12,8 @@ function Homepage() {
     const navigate = useNavigate();
     const [posts,setPosts] = useState([]);
     const [snapshots,loading] = useListVals(ref(db, 'posts'));
+    const [users, setUsers] = useState([]);
+    const [snapshotsUsers,loadingUsers] = useListVals(ref(db, 'users'));
 
     const handleLinkClick = (e) => {
         if (!user) {
@@ -24,6 +26,12 @@ function Homepage() {
           setPosts([...snapshots]);
         }
       }, [snapshots]);
+
+      useEffect(() => {
+        if (snapshotsUsers) {
+          setUsers([...snapshotsUsers]);
+        }
+      }, [snapshotsUsers]);
 
     console.log('!');
 
@@ -40,6 +48,7 @@ function Homepage() {
                 <img src='/supplements.png' alt='Go to supplements picture' className="links" />
             </NavLink>
             </div>
+            <>{posts.length} {users.length}</>
             <div className="bottom-grid">
         {posts.length !== 0 ? (
           posts
