@@ -1,12 +1,17 @@
 import './Homepage.css';
 import { NavLink, useNavigate } from 'react-router-dom'
 import { AppContext } from '../../context/authContext';
-import { useContext } from 'react';
+import { useContext, useEffect, useState } from 'react';
+import { useListVals } from 'react-firebase-hooks/database';
+import { ref } from 'firebase/database';
+import { db } from '../../config/firebase-config';
 
 
 function Homepage() {
     const { user } = useContext(AppContext);
     const navigate = useNavigate();
+    const [posts,setPosts] = useState([]);
+    const [snapshots,loading] = useListVals(ref(db, 'posts'));
 
     const handleLinkClick = (e) => {
         if (!user) {
@@ -14,6 +19,11 @@ function Homepage() {
             navigate('/login');
         }
     };
+    useEffect(() => {
+        if (snapshots) {
+          setPosts([...snapshots]);
+        }
+      }, [snapshots]);
 
     console.log('!');
 
@@ -30,6 +40,31 @@ function Homepage() {
                 <img src='/supplements.png' alt='Go to supplements picture' className="links" />
             </NavLink>
             </div>
+            <div className="bottom-grid">
+        {posts.length !== 0 ? (
+          posts
+            .map(post => (
+              <div key={post.id} className="post-box">
+                <div>
+                  <div className="title-box">
+                    <h2>{post.title}</h2>
+                    <h4>Author: {post.author}</h4>
+                  </div>
+                  <div className="content-box">
+                    <p>{post.content}</p>
+                  </div>
+                </div>
+                <div id="details-btn">
+                  <button onClick={() => navigate(`/posts/${post.id}`)}>
+                    View Details
+                  </button>
+                </div>
+              </div>
+            ))
+        ) : (
+          <h2>No posts found</h2>
+        )}
+      </div>
         </div>
     )
 }
