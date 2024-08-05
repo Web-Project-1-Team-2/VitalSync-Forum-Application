@@ -1,23 +1,41 @@
-import { useObjectVal } from 'react-firebase-hooks/database';
+import { useListVals, useObjectVal } from 'react-firebase-hooks/database';
 import { useParams } from 'react-router';
 import { db } from '../../config/firebase-config';
 import { ref } from 'firebase/database';
 import { useContext, useEffect, useState } from 'react';
 import { AppContext } from '../../context/authContext';
-import { deletePost } from '../../services/post.service';
+import { deletePost, uploadComment } from '../../services/post.service';
 import { notifyError, notifySuccess } from '../../services/notification.service';
 import './DetailedPost.css';
+import { useNavigate } from 'react-router-dom';
+import Comment from '../../components/Base/Comment/Comment';
 
 const DetailedPost = () => {
 
+    const navigate = useNavigate();
+
     const { id } = useParams();
+    const { userData } = useContext(AppContext);
+
     const [post, loading] = useObjectVal(ref(db, `posts/${id}`));
     const [currPost, setCurrPost] = useState({});
-    const { userData } = useContext(AppContext);
+
+    const [comments, commentsLoading] = useListVals(ref(db, `posts/${id}/comments`));
+    console.log(`comments: ${comments}`);
+    
+    const [currComments, setCurrComments] = useState([]);
+    console.log(currComments);
+
+    const [comment, setComment] = useState('');
+    console.log(`comment: ${comment}`);
+    
+
     const [data, setData] = useState({
         createdPosts: {},
         level: '',
     });
+
+
 
     useEffect(() => {
         if (!userData) return;
@@ -30,15 +48,33 @@ const DetailedPost = () => {
         setCurrPost({ ...post });
     }, [post])
 
+    useEffect(() => {
+        if (!comments) return;
+        setCurrComments([...comments]);
+    }, [comments])
+
+
     const deleteCurrPost = async () => {
         try {
             await deletePost(userData.username, id);
             notifySuccess('Post deleted successfully!');
+            navigate('/posts');
         } catch (error) {
             console.log(error.message);
             notifyError('Error deleting post!');
         }
     };
+
+    const commentOnPost = async () => {
+        try {
+            await uploadComment(id, userData.username, comment);
+            setComment('');
+            notifySuccess('Comment added successfully!');
+        } catch (error) {
+            console.log(error.message);
+            notifyError('Error adding comment!');
+        }
+    }
 
     return (
         <div id='detailed-page'>
@@ -60,14 +96,19 @@ const DetailedPost = () => {
             <div id='detailed-interaction'>
                 <button>Like</button>
                 <div className='comment-box'>
-                    <textarea placeholder='Write a comment...' />
-                    <button>Add</button>
+                    <textarea value={comment} placeholder='Write a comment...' onChange={(e) => setComment(e.target.value)} />
+                    <button onClick={commentOnPost} >Add</button>
                 </div>
             </div>
             <div className='detailed-comments'>
                 <h2>Comments</h2>
                 <div id='comment-section'>
-
+                    {commentsLoading && <h3>Loading...</h3>}
+                    {currComments.length !== 0 ? (currComments.map(comment => <Comment
+                        key={comment.id}
+                        id={comment.id}
+                        author={comment.author}
+                        content={comment.content} />)) : (<h3>No comments yet!</h3>)}
                 </div>
             </div>
 

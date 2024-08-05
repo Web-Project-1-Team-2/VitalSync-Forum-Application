@@ -15,6 +15,8 @@ function Homepage() {
         }
     };
 
+    console.log('!');
+
     return (
         <div className="homepage">
             <NavLink to='/training' onClick={handleLinkClick}>

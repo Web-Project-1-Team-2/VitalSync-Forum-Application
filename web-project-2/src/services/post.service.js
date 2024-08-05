@@ -26,12 +26,12 @@ const updatePostCount = async (username, sign = 'increment') => {
     });
 
 
-    if (newPostCount < 4) {
+    if (newPostCount > 4) {
         console.log(`User ${username} has become an admin!`);
         return notifySuccess(`User ${username} has become an admin!`);
     } else if (newPostCount < 5) {
         console.log(`User ${username} has become a rookie!`);
-        return notifySuccess(`User ${username} has become a rookie!`);
+        return;
     }
 };
 
@@ -95,3 +95,10 @@ export const deletePost = async (username, postId) => {
     await updatePostCount(username, 'decrement');
     return;
 }
+
+export const uploadComment = async (postId, author, content) => {
+    const comment = { author, content, createdOn: new Date().toString() };
+    const result = await push(ref(db, `posts/${postId}/comments`), comment);
+    const id = result.key;
+    await update(ref(db), { [`posts/${postId}/comments/${id}/id`]: id, });
+};
