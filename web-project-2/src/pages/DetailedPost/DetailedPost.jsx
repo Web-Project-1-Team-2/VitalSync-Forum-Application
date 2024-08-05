@@ -21,20 +21,15 @@ const DetailedPost = () => {
     const [currPost, setCurrPost] = useState({});
 
     const [comments, commentsLoading] = useListVals(ref(db, `posts/${id}/comments`));
-    console.log(`comments: ${comments}`);
-    
     const [currComments, setCurrComments] = useState([]);
-    console.log(currComments);
+    console.log({ comments });
 
     const [comment, setComment] = useState('');
-    console.log(`comment: ${comment}`);
-    
 
     const [data, setData] = useState({
         createdPosts: {},
         level: '',
     });
-
 
 
     useEffect(() => {
@@ -50,7 +45,8 @@ const DetailedPost = () => {
 
     useEffect(() => {
         if (!comments) return;
-        setCurrComments([...comments]);
+        const updatedList = comments.filter((el) => 'id' in el);
+        setCurrComments([...updatedList]);
     }, [comments])
 
 
