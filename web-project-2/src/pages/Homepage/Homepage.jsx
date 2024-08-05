@@ -19,6 +19,7 @@ function Homepage() {
 
     return (
         <div className="homepage">
+            <div className='top-grid'>
             <NavLink to='/training' onClick={handleLinkClick}>
                 <img src='/athlete.jpg' alt='Go to training picture' className="links" />
             </NavLink>
@@ -28,6 +29,7 @@ function Homepage() {
             <NavLink to='/supplements' onClick={handleLinkClick}>
                 <img src='/supplements.png' alt='Go to supplements picture' className="links" />
             </NavLink>
+            </div>
         </div>
     )
 }

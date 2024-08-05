@@ -1,13 +1,28 @@
 .homepage {
     display: flex;
-    flex-direction: row;
-    height: auto;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
+    flex-direction: column;
+    padding: 20px;
+    width: 100%;
 }
+.top-grid {
+    display: flex;
+
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 10px;
+  }
+
+  .image {
+    width: 30%; 
+    height: auto;
+    border-radius: 4px;
+  }
 
 .links {
     width: 300px;
     height: auto;
 }
+
+.links:hover {
+    transform: scale(1.1);
+  }
