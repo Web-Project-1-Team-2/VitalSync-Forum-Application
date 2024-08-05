@@ -1,11 +1,48 @@
 import PropTypes from 'prop-types';
+import { useContext, useEffect, useState } from 'react';
+import { AppContext } from '../../../context/authContext';
+import { notifyError, notifySuccess } from '../../../services/notification.service';
+import { deleteComment } from '../../../services/post.service';
 
-const Comment = ({author, content}) => {
+
+const Comment = ({ id, postId, author, content }) => {
+
+    const { userData } = useContext(AppContext);
+    
+    const [data, setData] = useState({
+        createdPosts: {},
+        level: '',
+    });
+
+
+    useEffect(() => {
+        if (!userData) return;
+        if (!userData.createdPosts) return;
+        setData(userData);
+    }, [userData])
+
+    const deleteCurrPost = async () => {
+        try {
+            await deleteComment(postId, id, author);
+            notifySuccess('Comment deleted successfully!');
+        } catch (error) {
+            console.log(error.message);
+            notifyError('Error deleting comment!');
+        }
+    };
+
+
     return (
         <>
             <div className='single-comment'>
-                <h3>{author}</h3>
-                <p>{content}</p>
+                <div id='comment-author'>
+                    <h3>{author}</h3>
+                </div>
+                <div id='comment-content'>
+                    <p>{content}</p>
+                </div>
+
+                {Object.keys(data.createdPosts).includes(id) || data.level === 'Admin' ? <button onClick={deleteCurrPost}>Delete</button> : null}
             </div>
         </>
     )
@@ -13,6 +50,7 @@ const Comment = ({author, content}) => {
 
 Comment.propTypes = {
     id: PropTypes.string,
+    postId: PropTypes.string,
     author: PropTypes.string,
     content: PropTypes.string,
 };

@@ -1,6 +1,6 @@
 import { ref, push, get, update, } from 'firebase/database';
 import { db } from '../config/firebase-config';
-import { notifySuccess } from './notification.service';
+import { notifyError, notifySuccess } from './notification.service';
 
 const updateCreatedPosts = async (username, postId, idValue = true) => {
     const currentPosts = await get(ref(db, `users/${username}/createdPosts`));
@@ -97,8 +97,38 @@ export const deletePost = async (username, postId) => {
 }
 
 export const uploadComment = async (postId, author, content) => {
+    const postRef = ref(db, `posts/${postId}`);
+    const snapshot = await get(postRef);
+    const postData = snapshot.val();
+
+    if (!postData) {
+        notifyError('Comment not found');
+    }
+
     const comment = { author, content, createdOn: new Date().toString() };
     const result = await push(ref(db, `posts/${postId}/comments`), comment);
     const id = result.key;
     await update(ref(db), { [`posts/${postId}/comments/${id}/id`]: id, });
+    await update(ref(db), { [`users/${author}/comments/${id}`]: true, });
+
+    const newCommentCount = (postData.commentCount || 0) + 1;
+    await update(ref(db), { [`posts/${postId}/commentCount`]: newCommentCount, });
 };
+
+export const deleteComment = async (postId, commentId, author) => {
+    const commentRef = ref(db, `posts/${postId}`);
+    const snapshot = await get(commentRef);
+    const postData = snapshot.val();
+
+    if (!postData) {
+        notifyError('Comment not found');
+    }
+
+    await update(ref(db), {
+        [`posts/${postId}/comments/${commentId}`]: null,
+        [`users/${author}/comments/${commentId}`]: null,
+    });
+
+    const newCommentCount = (postData.commentCount || 0) - 1;
+    await update(ref(db), { [`posts/${postId}/commentCount`]: newCommentCount, });
+}

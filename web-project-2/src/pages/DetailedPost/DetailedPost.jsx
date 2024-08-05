@@ -103,6 +103,7 @@ const DetailedPost = () => {
                     {currComments.length !== 0 ? (currComments.map(comment => <Comment
                         key={comment.id}
                         id={comment.id}
+                        postId={id}
                         author={comment.author}
                         content={comment.content} />)) : (<h3>No comments yet!</h3>)}
                 </div>
