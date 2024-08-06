@@ -69,3 +69,15 @@
     border-radius: 5px;
     cursor: pointer;
   }
+
+  .count {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 20px;
+    width: 100%; 
+    margin-top: 0;
+    padding: 20px;
+  }
