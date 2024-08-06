@@ -1,0 +1,57 @@
+.single-comment {
+    display: grid;
+    grid-template-rows: 1fr 1fr 0.5fr;
+    background-color: #44633f;
+    width: 90%;
+    height: 70%;
+    gap: 10px;
+    margin: 10px 0;
+    border-radius: 5px;
+    padding: 10px;
+}
+
+#comment-author {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #FBFEF9;
+}
+
+#comment-author>h3 {
+    font-size: 25px;
+    margin: 5px 10px;
+}
+
+#comment-content>p {
+    font-size: 18px;
+    margin: 5px 10px;
+}
+
+.comment-delete-btn {
+    font-size: 28px;
+    background-color: #5a936700;
+    color: #FBFEF9;
+    border: none;
+    cursor: pointer;
+}
+
+.comment-delete-btn:hover {
+    color: #c52c2c;
+}
+
+#vote-button {
+    background-color: rgba(0, 0, 0, 0);
+    border: none;
+    cursor: pointer;
+}
+
+.comment-upvote-icon {
+    font-size: 20px;
+    color: #FBFEF9;
+}
+
+#comment-interactions {
+    display: flex;
+    justify-content: start;
+    align-items: center;
+}

@@ -69,23 +69,23 @@ export const getPostById = async (id) => {
     };
 };
 
-export const upVotePost = (handle, postId) => {
-    const updateObject = {
-        [`posts/${postId}/ratedBy/${handle}`]: true,
-        [`users/${handle}/ratedposts/${postId}`]: true,
-    };
+// export const upVotePost = (handle, postId) => {
+//     const updateObject = {
+//         [`posts/${postId}/ratedBy/${handle}`]: true,
+//         [`users/${handle}/ratedposts/${postId}`]: true,
+//     };
 
-    return update(ref(db), updateObject);
-};
+//     return update(ref(db), updateObject);
+// };
 
-export const downVotePost = (handle, postId) => {
-    const updateObject = {
-        [`posts/${postId}/ratedBy/${handle}`]: null,
-        [`users/${handle}/ratedposts/${postId}`]: null,
-    };
+// export const downVotePost = (handle, postId) => {
+//     const updateObject = {
+//         [`posts/${postId}/ratedBy/${handle}`]: null,
+//         [`users/${handle}/ratedposts/${postId}`]: null,
+//     };
 
-    return update(ref(db), updateObject);
-};
+//     return update(ref(db), updateObject);
+// };
 
 export const deletePost = async (username, postId) => {
     await update(ref(db), {
@@ -95,6 +95,8 @@ export const deletePost = async (username, postId) => {
     await updatePostCount(username, 'decrement');
     return;
 }
+
+
 
 export const uploadComment = async (postId, author, content) => {
     const postRef = ref(db, `posts/${postId}`);
@@ -131,4 +133,76 @@ export const deleteComment = async (postId, commentId, author) => {
 
     const newCommentCount = (postData.commentCount || 0) - 1;
     await update(ref(db), { [`posts/${postId}/commentCount`]: newCommentCount, });
+}
+
+
+
+export const likePost = async (postId, user) => {
+    const postRef = ref(db, `posts/${postId}`);
+    const snapshot = await get(postRef);
+    const postData = snapshot.val();
+
+    if (!postData) {
+        notifyError('Post not found');
+    }
+
+    const likes = postData.likes || 0;
+    const newLikes = likes + 1;
+
+    await update(ref(db), { [`posts/${postId}/likes`]: newLikes, });
+    await update(ref(db), { [`posts/${postId}/likedUsers/${user}`]: true, });
+    await update(ref(db), { [`users/${user}/likedPosts/${postId}`]: true, });
+}
+
+export const unlikePost = async (postId, user) => {
+    const postRef = ref(db, `posts/${postId}`);
+    const snapshot = await get(postRef);
+    const postData = snapshot.val();
+
+    if (!postData) {
+        notifyError('Post not found');
+    }
+
+    const likes = postData.likes || 0;
+    const newLikes = likes > 0 ? likes - 1 : 0;
+
+    await update(ref(db), { [`posts/${postId}/likes`]: newLikes, });
+    await update(ref(db), { [`posts/${postId}/likedUsers/${user}`]: null, });
+    await update(ref(db), { [`users/${user}/likedPosts/${postId}`]: null, });
+}
+
+
+
+export const likeComment = async (postId, commentId, user) => {
+    const commentRef = ref(db, `posts/${postId}/comments/${commentId}`);
+    const snapshot = await get(commentRef);
+    const commentData = snapshot.val();
+
+    if (!commentData) {
+        notifyError('Comment not found');
+    }
+
+    const likes = commentData.likes || 0;
+    const newLikes = likes + 1;
+
+    await update(ref(db), { [`posts/${postId}/comments/${commentId}/likes`]: newLikes, });
+    await update(ref(db), { [`posts/${postId}/comments/${commentId}/likedUsers/${user}`]: true, });
+    await update(ref(db), { [`users/${user}/likedComments/${commentId}`]: true, });
+}
+
+export const unlikeComment = async (postId, commentId, user) => {
+    const commentRef = ref(db, `posts/${postId}/comments/${commentId}`);
+    const snapshot = await get(commentRef);
+    const commentData = snapshot.val();
+
+    if (!commentData) {
+        notifyError('Comment not found');
+    }
+
+    const likes = commentData.likes || 0;
+    const newLikes = likes > 0 ? likes - 1 : 0;
+
+    await update(ref(db), { [`posts/${postId}/comments/${commentId}/likes`]: newLikes, });
+    await update(ref(db), { [`posts/${postId}/comments/${commentId}/likedUsers/${user}`]: null, });
+    await update(ref(db), { [`users/${user}/likedComments/${commentId}`]: null, });
 }

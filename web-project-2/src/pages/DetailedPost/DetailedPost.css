@@ -11,7 +11,7 @@
 #detailed-title-details {
     display: grid;
     grid-template-columns: 2fr 1fr;
-    margin: 10px;
+    margin: 0;
 }
 
 .detailed-title h1 {
@@ -45,7 +45,7 @@
     justify-content: space-between;
 }
 
-#detailed-interaction button {
+#add-button {
     font-family: 'Bebas Neue', sans-serif;
     font-size: 20px;
     padding: 10px 30px;
@@ -53,6 +53,26 @@
     color: #FBFEF9;
     border: none;
     border-radius: 5px;
+    cursor: pointer;
+}
+
+#like-section {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    margin-bottom: 30px;
+}
+
+#like-section > p {
+    font-size: 25px;
+    margin: 0;
+}
+
+.like-button {
+    font-size: 30px;
+    background-color: #5a936700;
+    color: #FBFEF9;
+    border: none;
     cursor: pointer;
 }
 
@@ -83,10 +103,35 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    margin-bottom: 20px;
 }
 
 #comment-section {
     width: 90%;
     border: 2px solid #FBFEF9;
     border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+#delete-section {
+    text-align: center;
+}
+
+.delete-btn {
+    font-family: 'bebas neue', sans-serif;
+    font-size: 18px;
+    background-color: #c52c2c;
+    border: none;
+    color: #FBFEF9;
+    border-radius: 5px;
+    cursor: pointer;
+    padding: 8px 16px;
+}
+
+.delete-btn:hover {
+    background-color: #a52626;
+    color: #FBFEF9;
 }

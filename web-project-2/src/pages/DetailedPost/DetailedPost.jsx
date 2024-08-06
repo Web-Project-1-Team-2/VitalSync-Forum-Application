@@ -4,11 +4,13 @@ import { db } from '../../config/firebase-config';
 import { ref } from 'firebase/database';
 import { useContext, useEffect, useState } from 'react';
 import { AppContext } from '../../context/authContext';
-import { deletePost, uploadComment } from '../../services/post.service';
+import { deletePost, likePost, unlikePost, uploadComment } from '../../services/post.service';
 import { notifyError, notifySuccess } from '../../services/notification.service';
 import './DetailedPost.css';
 import { useNavigate } from 'react-router-dom';
 import Comment from '../../components/Base/Comment/Comment';
+import { BiUpvote } from "react-icons/bi";
+import { BiSolidUpvote } from "react-icons/bi";
 
 const DetailedPost = () => {
 
@@ -22,11 +24,11 @@ const DetailedPost = () => {
 
     const [comments, commentsLoading] = useListVals(ref(db, `posts/${id}/comments`));
     const [currComments, setCurrComments] = useState([]);
-    console.log({ comments });
 
     const [comment, setComment] = useState('');
 
     const [data, setData] = useState({
+        likedPosts: {},
         createdPosts: {},
         level: '',
     });
@@ -34,8 +36,10 @@ const DetailedPost = () => {
 
     useEffect(() => {
         if (!userData) return;
-        if (!userData.createdPosts) return;
-        setData(userData);
+        setData({...userData, 
+            createdPosts: userData.createdPosts || {}, 
+            likedPosts: userData.likedPosts || {} 
+        });
     }, [userData])
 
     useEffect(() => {
@@ -72,6 +76,24 @@ const DetailedPost = () => {
         }
     }
 
+    const likeCurrPost = async () => {
+        try {
+            await likePost(id, userData.username);
+        } catch (error) {
+            console.log(error.message);
+            notifyError('Error liking post!');
+        }
+    }
+
+    const unlikeCurrPost = async () => {
+        try {
+            await unlikePost(id, userData.username);
+        } catch (error) {
+            console.log(error.message);
+            notifyError('Error disliking post!');
+        }
+    }
+
     return (
         <div id='detailed-page'>
             {loading && <h2>Loading...</h2>}
@@ -90,10 +112,15 @@ const DetailedPost = () => {
                 </div>
             </div>
             <div id='detailed-interaction'>
-                <button>Like</button>
+                <div id='like-section'>
+                    {Object.keys(data.likedPosts).includes(id) ? 
+                    <button className='like-button' onClick={unlikeCurrPost} ><BiSolidUpvote /></button> : 
+                    <button className='like-button' onClick={likeCurrPost}><BiUpvote /></button>}
+                    <p>{currPost.likes ? currPost.likes : 0}</p>
+                </div>
                 <div className='comment-box'>
                     <textarea value={comment} placeholder='Write a comment...' onChange={(e) => setComment(e.target.value)} />
-                    <button onClick={commentOnPost} >Add</button>
+                    <button id='add-button' onClick={commentOnPost} >Add</button>
                 </div>
             </div>
             <div className='detailed-comments'>
@@ -109,7 +136,9 @@ const DetailedPost = () => {
                 </div>
             </div>
 
-            {Object.keys(data.createdPosts).includes(id) || data.level === 'Admin' ? <button onClick={deleteCurrPost}>Delete</button> : null}
+            <div id='delete-section'>
+                {Object.keys(data.createdPosts).includes(id) || data.level === 'Admin' ? <button className='delete-btn' onClick={deleteCurrPost}>Delete</button> : null}
+            </div>
         </div>
     )
 }
