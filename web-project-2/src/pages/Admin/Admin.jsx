@@ -12,6 +12,7 @@ function Admin() {
     const [sortBy, setSortBy] = useState('createdOn');
     const [filterBy, setFilterBy] = useState(null);
     const [filterValue, setFilterValue] = useState('');
+    const [loading, setLoading] = useState(true);
 
     const fetchPosts = useCallback(async () => {
         const fetchedPosts = await getAdminPosts(sortBy, filterBy, filterValue);
@@ -21,6 +22,17 @@ function Admin() {
     useEffect(() => {
         fetchPosts();
     }, [fetchPosts]);
+
+
+    useEffect(() => {
+        if (userData !== null) {
+            setLoading(false);
+        }
+    }, [userData]);
+
+    if (loading) {
+        return <div>Loading...</div>;
+    }
 
     if (!userData || userData.level !== 'Admin') {
         return <Navigate to="/" replace />;

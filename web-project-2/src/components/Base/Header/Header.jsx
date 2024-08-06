@@ -8,11 +8,12 @@ import './Header.css';
 const Header = () => {
 
     const { user, setAppState } = useContext(AppContext);
+    const { userData } = useContext(AppContext);
     const navigate = useNavigate()
 
     const logout = async () => {
         await logoutUser();
-        setAppState({user: null, userData: null});
+        setAppState({ user: null, userData: null });
         navigate('/');
     };
 
@@ -25,6 +26,9 @@ const Header = () => {
                 {user && <NavLink to={'/create'} className={"nav-link"}>Create</NavLink>}
                 {!user ? <NavLink to={'/login'} className={"nav-link"}>Login</NavLink> : <button onClick={logout} className={"logout-btn"}>Logout</button>}
                 {!user && <NavLink to={'/register'} className={"nav-link"}>Register</NavLink>}
+                {userData?.level === 'Admin' && (
+                    <NavLink to="/admin">Admin Dashboard</NavLink>
+                )}
             </div>
         </div>
 
