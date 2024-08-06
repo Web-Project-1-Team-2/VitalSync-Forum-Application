@@ -23,6 +23,7 @@ import DetailedPost from './pages/DetailedPost/DetailedPost'
 import Authenticated from './components/hoc/Authenticated'
 import { useObjectVal } from 'react-firebase-hooks/database'
 import { ref } from 'firebase/database'
+import Admin from './pages/Admin/Admin';
 
 function App() {
 
@@ -71,6 +72,7 @@ function App() {
           <Route path='/supplements' element={<Supplements />} />
           <Route path='/create' element={<Authenticated><CreatePost /></Authenticated>} />
           <Route path='*' element={<PageNotFound />} />
+          <Route path='/admin' element={<Admin />} />
         </Routes>
       </Container>
       <Footer />
