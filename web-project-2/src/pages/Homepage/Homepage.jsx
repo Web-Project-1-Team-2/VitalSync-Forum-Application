@@ -64,10 +64,10 @@ function Homepage() {
             className="links"
           />
         </NavLink>
-        <NavLink to="/mostliked">
+        <NavLink to="/mostliked" onClick={handleLinkClick}>
           Most Liked
         </NavLink>
-        <NavLink to="/mostcommented">
+        <NavLink to="/mostcommented" onClick={handleLinkClick}>
           Most Commented
         </NavLink>
       </div>
@@ -86,9 +86,12 @@ function Homepage() {
                 </div>
               </div>
               <div id="details-btn">
-                <button onClick={() => navigate(`/posts/${post.id}`)}>
+                {user ? <button onClick={() => navigate(`/posts/${post.id}`)}>
                   View Details
-                </button>
+                </button> :
+                <button onClick={handleLinkClick}>
+                View Details
+              </button>}
               </div>
             </div>
           ))
