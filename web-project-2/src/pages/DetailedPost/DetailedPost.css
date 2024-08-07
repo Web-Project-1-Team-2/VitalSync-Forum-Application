@@ -29,12 +29,17 @@
 
 .detailed-author h3 {
     font-size: 35px;
-    margin: 0 0 0 10px;
+    margin: 0 0 5px 0;
 }
 
 .detailed-author h4 {
     font-size: 25px;
-    margin: 0 0 0 10px;
+    margin: 0 0 5px 0;
+}
+
+.detailed-author h5 {
+    font-size: 22px;
+    margin: 0;
 }
 
 .detailed-content p {
@@ -56,11 +61,24 @@
     cursor: pointer;
 }
 
+#int-section {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 30px;
+
+}
+
+#like-comment-section {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
 #like-section {
     display: flex;
     align-items: center;
     justify-content: flex-start;
-    margin-bottom: 30px;
 }
 
 #like-section > p {
@@ -68,8 +86,27 @@
     margin: 0;
 }
 
+#comment-button-section {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+#comment-button-section > p {
+    font-size: 25px;
+    margin: 0;
+}
+
 .like-button {
     font-size: 30px;
+    background-color: #5a936700;
+    color: #FBFEF9;
+    border: none;
+    cursor: pointer;
+}
+
+.comment-button {
+    font-size: 28px;
     background-color: #5a936700;
     color: #FBFEF9;
     border: none;
@@ -84,6 +121,22 @@
 
 .comment-box button{
     margin: 0 10px;
+}
+
+.edit-btn {
+    padding: 5px 9px;
+    background-color: #5a9367;
+    color: #FBFEF9;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.edit-btn-icon{
+    font-size: 25px;
+    color: #FBFEF9;
+    margin: 0;
+    padding: 0;
 }
 
 #detailed-interaction textarea {

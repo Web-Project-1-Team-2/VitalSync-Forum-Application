@@ -3,7 +3,7 @@
     color: #FBFEF9;
     padding: 10px;
     border-radius: 5px;
-    margin-bottom: 15px;
+    margin-bottom: 20px;
     display: grid;
     grid-template-columns: 3fr 0.5fr;
 }

@@ -1,6 +1,6 @@
 .single-comment {
     display: grid;
-    grid-template-rows: 1fr 1fr 0.5fr;
+    grid-template-rows: 1fr 1fr 0.3fr;
     background-color: #44633f;
     width: 90%;
     height: 70%;
@@ -46,12 +46,31 @@
 }
 
 .comment-upvote-icon {
-    font-size: 20px;
+    font-size: 25px;
     color: #FBFEF9;
 }
 
 #comment-interactions {
     display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#like-section-interactions {
+    display: flex;
     justify-content: start;
     align-items: center;
+}
+
+#like-section-interactions>p {
+    font-size: 20px;
+    margin: 0;
+}
+
+.edit-comment-btn {
+    padding: 5px 9px;
+    background-color: #5a936700;
+    color: #FBFEF9;
+    border: none;
+    cursor: pointer;
 }

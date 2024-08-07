@@ -11,6 +11,9 @@ import { useNavigate } from 'react-router-dom';
 import Comment from '../../components/Base/Comment/Comment';
 import { BiUpvote } from "react-icons/bi";
 import { BiSolidUpvote } from "react-icons/bi";
+import { FaRegComment } from "react-icons/fa";
+import { MdEdit } from "react-icons/md";
+import EditPost from '../../components/Base/EditPost/EditPost';
 
 const DetailedPost = () => {
 
@@ -20,7 +23,11 @@ const DetailedPost = () => {
     const { userData } = useContext(AppContext);
 
     const [post, loading] = useObjectVal(ref(db, `posts/${id}`));
-    const [currPost, setCurrPost] = useState({});
+    const [currPost, setCurrPost] = useState({
+        title: '',
+        content: '',
+    });
+
 
     const [comments, commentsLoading] = useListVals(ref(db, `posts/${id}/comments`));
     const [currComments, setCurrComments] = useState([]);
@@ -33,12 +40,15 @@ const DetailedPost = () => {
         level: '',
     });
 
+    const [modal, setModal] = useState(false);
+    const toggle = () => setModal(!modal);
 
     useEffect(() => {
         if (!userData) return;
-        setData({...userData, 
-            createdPosts: userData.createdPosts || {}, 
-            likedPosts: userData.likedPosts || {} 
+        setData({
+            ...userData,
+            createdPosts: userData.createdPosts || {},
+            likedPosts: userData.likedPosts || {}
         });
     }, [userData])
 
@@ -105,6 +115,7 @@ const DetailedPost = () => {
                     <div className='detailed-author'>
                         <h3>Author: {currPost.author}</h3>
                         <h4>Category: {currPost.category}</h4>
+                        <h5>Created: {new Date (currPost.createdOn).toLocaleDateString()}</h5>
                     </div>
                 </div>
                 <div className='detailed-content'>
@@ -112,11 +123,21 @@ const DetailedPost = () => {
                 </div>
             </div>
             <div id='detailed-interaction'>
-                <div id='like-section'>
-                    {Object.keys(data.likedPosts).includes(id) ? 
-                    <button className='like-button' onClick={unlikeCurrPost} ><BiSolidUpvote /></button> : 
-                    <button className='like-button' onClick={likeCurrPost}><BiUpvote /></button>}
-                    <p>{currPost.likes ? currPost.likes : 0}</p>
+                <div id='int-section'>
+                    <div id='like-comment-section'>
+                        <div id='like-section'>
+                            {Object.keys(data.likedPosts).includes(id) ?
+                                <button className='like-button' onClick={unlikeCurrPost} ><BiSolidUpvote /></button> :
+                                <button className='like-button' onClick={likeCurrPost}><BiUpvote /></button>}
+                            <p>{currPost.likes ? currPost.likes : 0}</p>
+                        </div>
+                        <div id='comment-button-section'>
+                            <button className='comment-button'><FaRegComment /></button>
+                            <p>{currPost.commentCount || 0}</p>
+                        </div>
+                    </div>
+
+                    {Object.keys(data.createdPosts).includes(id) ? <button onClick={toggle} className='edit-btn'><MdEdit className='edit-btn-icon' /></button> : null}
                 </div>
                 <div className='comment-box'>
                     <textarea value={comment} placeholder='Write a comment...' onChange={(e) => setComment(e.target.value)} />
@@ -139,6 +160,14 @@ const DetailedPost = () => {
             <div id='delete-section'>
                 {Object.keys(data.createdPosts).includes(id) || data.level === 'Admin' ? <button className='delete-btn' onClick={deleteCurrPost}>Delete</button> : null}
             </div>
+            {(currPost.title && currPost.content) && (
+                <EditPost
+                    id={id}
+                    title={currPost.title}
+                    content={currPost.content}
+                    modal={modal}
+                    toggleModel={toggle} />
+            )}
         </div>
     )
 }

@@ -1,0 +1,67 @@
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.edit-comment-page {
+    background-color: #44633f;
+    padding: 20px;
+    border-radius: 8px;
+    width: 50%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.edit-comment-page textarea {
+    padding: 10px;
+    border: 1px solid #FBFEF9;
+    border-radius: 5px;
+    height: 100px;
+    width: -webkit-fill-available;
+    resize: none;
+    font-size: 15px;
+    font-family: 'Bebas Neue', sans-serif;
+    margin-bottom: 20px;
+}
+
+.edit-comment-page label {
+    display: block;
+    font-size: 20px;
+    margin-bottom: 5px;
+}
+
+.edit-comment-page button {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 20px;
+    padding: 10px 20px;
+    background-color: #323b2f;
+    color: #FBFEF9;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.edit-comment-page button:hover {
+    background-color: #21271f;
+}
+
+#buttons-grid {
+    display: flex;
+    justify-content: center;
+}
+
+#class-buttons {
+    width: 50%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+}

@@ -206,3 +206,16 @@ export const unlikeComment = async (postId, commentId, user) => {
     await update(ref(db), { [`posts/${postId}/comments/${commentId}/likedUsers/${user}`]: null, });
     await update(ref(db), { [`users/${user}/likedComments/${commentId}`]: null, });
 }
+
+export const editPost = async(postId, title, content) => {
+    await update(ref(db), {
+        [`posts/${postId}/title`]: title,
+        [`posts/${postId}/content`]: content,
+    });
+}
+
+export const editComment = async(postId, commentId, content) => {
+    await update(ref(db), {
+        [`posts/${postId}/comments/${commentId}/content`]: content,
+    });
+}

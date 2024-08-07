@@ -10,6 +10,8 @@ import { BiSolidUpvote } from "react-icons/bi";
 import { useObjectVal } from 'react-firebase-hooks/database';
 import { ref } from 'firebase/database';
 import { db } from '../../../config/firebase-config';
+import { MdEdit } from "react-icons/md";
+import EditComment from '../EditComment/EditComment';
 
 
 const Comment = ({ id, postId, author, content }) => {
@@ -23,6 +25,9 @@ const Comment = ({ id, postId, author, content }) => {
 
     const [comment] = useObjectVal(ref(db, `posts/${postId}/comments/${id}`));
     const [currComment, setCurrComment] = useState({});
+
+    const [modal, setModal] = useState(false);
+    const toggle = () => setModal(!modal);
 
     useEffect(() => {
         if (!userData) return;
@@ -82,11 +87,23 @@ const Comment = ({ id, postId, author, content }) => {
                     <p>{content}</p>
                 </div>
                 <div id='comment-interactions'>
-                    {Object.keys(data.likedComments).includes(id) ?
-                        <button onClick={unlikeCurrComment} id='vote-button'><BiSolidUpvote className='comment-upvote-icon' /></button> :
-                        <button onClick={likeCurrComment} id='vote-button'><BiUpvote className='comment-upvote-icon' /></button>}
-                    <p>{currComment.likes ? currComment.likes : 0}</p>
+                    <div id='like-section-interactions'>
+                        {Object.keys(data.likedComments).includes(id) ?
+                            <button onClick={unlikeCurrComment} id='vote-button'><BiSolidUpvote className='comment-upvote-icon' /></button> :
+                            <button onClick={likeCurrComment} id='vote-button'><BiUpvote className='comment-upvote-icon' /></button>}
+                        <p>{currComment.likes ? currComment.likes : 0}</p>
+                    </div>
+
+                    {Object.keys(data.comments).includes(id) ? <button onClick={toggle} className='edit-comment-btn'><MdEdit className='edit-btn-icon' /></button> : null}
                 </div>
+                {currComment.content && (
+                <EditComment
+                    id={id}
+                    postId={postId}
+                    content={currComment.content}
+                    modal={modal}
+                    toggleModel={toggle} />
+            )}
             </div>
         </>
     )
