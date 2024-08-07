@@ -15,9 +15,6 @@ const Posts = () => {
         setPosts([...snapshots]);
     }, [snapshots])
 
-    console.log('1');
-
-
     return (
         <div className='post-page'>
             <h1>Posts</h1>
@@ -31,7 +28,9 @@ const Posts = () => {
                             id={post.id}
                             title={post.title}
                             author={post.author}
-                            content={post.content} />)) : (<h2>No posts found</h2>)}
+                            content={post.content}
+                            likes={post.likes || 0}
+                            commentCount={post.commentCount || 0}/>)) : (<h2>No posts found</h2>)}
                 </div>
                 <div id='filters'>
                     <h3>Filters: </h3>

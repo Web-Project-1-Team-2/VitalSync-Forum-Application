@@ -1,0 +1,105 @@
+.post-box {
+    background-color: #323b2f;
+    color: #FBFEF9;
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 15px;
+    display: grid;
+    grid-template-columns: 3fr 0.5fr;
+}
+
+.post-content-section {
+    display: grid;
+    grid-template-rows: 0.5fr 0.8fr 0.3fr;
+    gap: 10px;
+    height: auto;
+}
+
+.title-box {
+    padding: 10px;
+    border-bottom: solid 2px #FBFEF9;
+}
+
+.title-box h2 {
+    font-size: 30px;
+    margin: 10px 0;
+}
+
+.content-box {
+    padding: 15px;
+}
+
+.content-box p {
+    font-size: 15px;
+}
+
+#filters{
+    width: 100%;
+    background-color: #323b2f;
+    color: #FBFEF9;
+    border-radius: 8px;
+    height: 400px;
+}
+
+#details-btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#details-btn > button {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 20px;
+    width: 80px;
+    height: 80px;
+    background-color: #fbfef9;
+    color: #44633f;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.post-interaction-info {
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    gap: 20px
+}
+
+#small-like-section {
+    display: flex;
+    justify-content: start;
+    align-items: center;
+}
+
+#small-like-section > p {
+    font-size: 20px;
+    margin: 0 0 0 5px;
+}
+
+#small-comment-section {
+    display: flex;
+    justify-content: start;
+    align-items: center;
+}
+
+#small-comment-section > p {
+    font-size: 20px;
+    margin: 0 0 0 5px;
+}
+
+.small-like-button {
+    font-size: 20px;
+    background-color: #5a936700;
+    color: #FBFEF9;
+    border: none;
+    cursor: pointer;
+}
+
+.small-comment-button {
+    font-size: 20px;
+    background-color: #5a936700;
+    color: #FBFEF9;
+    border: none;
+    cursor: pointer;
+}
