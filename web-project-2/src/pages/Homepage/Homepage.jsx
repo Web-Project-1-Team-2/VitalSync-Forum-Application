@@ -67,6 +67,9 @@ function Homepage() {
         <NavLink to="/mostliked">
           Most Liked
         </NavLink>
+        <NavLink to="/mostcommented">
+          Most Commented
+        </NavLink>
       </div>
 
       <div className="bottom-grid">

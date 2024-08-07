@@ -25,6 +25,7 @@ import { useObjectVal } from 'react-firebase-hooks/database'
 import { ref } from 'firebase/database'
 import Admin from './pages/Admin/Admin';
 import MostLiked from './pages/MostLiked/MostLiked'
+import MostCommented from './pages/MostCommented/MostCommented'
 
 function App() {
 
@@ -72,6 +73,7 @@ function App() {
           <Route path='/nutrition' element={<Nutrition />} />
           <Route path='/supplements' element={<Supplements />} />
           <Route path='/mostliked' element={<MostLiked />} />
+          <Route path='/mostcommented' element={<MostCommented />} />
           <Route path='/create' element={<Authenticated><CreatePost /></Authenticated>} />
           <Route path='*' element={<PageNotFound />} />
           <Route path='/admin' element={<Admin />} />
