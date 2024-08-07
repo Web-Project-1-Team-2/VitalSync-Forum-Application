@@ -12,7 +12,7 @@ import { notifyError } from '../../../services/notification.service';
 
 
 
-const Post = ({ id, title, author, content, likes, commentCount }) => {
+const Post = ({ id, title, author, content, likes, commentCount, creationDate }) => {
 
     const { userData } = useContext(AppContext);
     const [data, setData] = useState({
@@ -61,17 +61,21 @@ const Post = ({ id, title, author, content, likes, commentCount }) => {
                         <p>{content}</p>
                     </div>
                     <div className='post-interaction-info'>
-                        <div id='small-like-section'>
-                            {Object.keys(data.likedPosts).includes(id) ?
-                                <button className='small-like-button' onClick={unlikeCurrPost} ><BiSolidUpvote /></button> :
-                                <button className='small-like-button' onClick={likeCurrPost}><BiUpvote /></button>
-                            }
-                            <p>{likes}</p>
+                        <div id='interaction-buttons-section'>
+                            <div id='small-like-section'>
+                                {Object.keys(data.likedPosts).includes(id) ?
+                                    <button className='small-like-button' onClick={unlikeCurrPost} ><BiSolidUpvote /></button> :
+                                    <button className='small-like-button' onClick={likeCurrPost}><BiUpvote /></button>
+                                }
+                                <p>{likes}</p>
+                            </div>
+                            <div id='small-comment-section'>
+                                <button className='small-comment-button' onClick={() => navigate(`/posts/${id}`)}><FaRegComment /></button>
+                                <p>{commentCount}</p>
+                            </div>
                         </div>
-                        <div id='small-comment-section'>
-                            <button className='small-comment-button' onClick={() => navigate(`/posts/${id}`)}><FaRegComment /></button>
-                            <p>{commentCount}</p>
-                        </div>
+
+                        <p>Created: {creationDate}</p>
                     </div>
                 </div>
                 <div id='details-btn'>
@@ -89,6 +93,7 @@ Post.propTypes = {
     content: PropTypes.string,
     likes: PropTypes.number,
     commentCount: PropTypes.number,
+    creationDate: PropTypes.string,
 };
 
 export default Post

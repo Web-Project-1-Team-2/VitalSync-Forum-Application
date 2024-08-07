@@ -30,7 +30,8 @@ const Posts = () => {
                             author={post.author}
                             content={post.content}
                             likes={post.likes || 0}
-                            commentCount={post.commentCount || 0}/>)) : (<h2>No posts found</h2>)}
+                            commentCount={post.commentCount || 0}
+                            creationDate={new Date(post.createdOn).toLocaleDateString()}/>)) : (<h2>No posts found</h2>)}
                 </div>
                 <div id='filters'>
                     <h3>Filters: </h3>

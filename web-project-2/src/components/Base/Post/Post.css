@@ -30,10 +30,10 @@
 }
 
 .content-box p {
-    font-size: 15px;
+    font-size: 16px;
 }
 
-#filters{
+#filters {
     width: 100%;
     background-color: #323b2f;
     color: #FBFEF9;
@@ -47,7 +47,7 @@
     align-items: center;
 }
 
-#details-btn > button {
+#details-btn>button {
     font-family: 'Bebas Neue', sans-serif;
     font-size: 20px;
     width: 80px;
@@ -61,9 +61,20 @@
 
 .post-interaction-info {
     display: flex;
-    justify-content: start;
+    justify-content: space-between;
     align-items: center;
-    gap: 20px
+}
+
+.post-interaction-info>p {
+    font-size: 20px;
+    margin: 0;
+}
+
+#interaction-buttons-section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
 }
 
 #small-like-section {
@@ -72,7 +83,7 @@
     align-items: center;
 }
 
-#small-like-section > p {
+#small-like-section>p {
     font-size: 20px;
     margin: 0 0 0 5px;
 }
@@ -83,7 +94,7 @@
     align-items: center;
 }
 
-#small-comment-section > p {
+#small-comment-section>p {
     font-size: 20px;
     margin: 0 0 0 5px;
 }
