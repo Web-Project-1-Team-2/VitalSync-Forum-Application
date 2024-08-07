@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { useListVals } from "react-firebase-hooks/database";
 import { useNavigate } from "react-router-dom"
 import { db } from "../../config/firebase-config";
+import { constrains } from "../../common/constrains";
 
 function MostLiked() {
     const navigate = useNavigate();
@@ -21,7 +22,7 @@ function MostLiked() {
         <div className="bottom-grid">
         {posts.length !== 0 ? (
           posts
-          .filter((post) => post.likes > 0)
+          .filter((post) => post.likes > constrains.MOST_LIKED_MIN_LIKES)
           .map((post) => (
             <div key={post.id} className="post-box">
               <div>
