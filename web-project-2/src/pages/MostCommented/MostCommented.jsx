@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { useListVals } from "react-firebase-hooks/database";
 import { useNavigate } from "react-router-dom"
 import { db } from "../../config/firebase-config";
+import { constrains } from "../../common/constrains";
 
 function MostCommented() {
     const navigate = useNavigate();
@@ -19,7 +20,7 @@ function MostCommented() {
         <div className="bottom-grid">
         {posts.length !== 0 ? (
           posts
-          .filter((post) => post.commentCount > 0)
+          .filter((post) => post.commentCount > constrains.MOST_COMMENTED_MIN_COMMENTS)
           .map((post) => (
             <div key={post.id} className="post-box">
               <div>
