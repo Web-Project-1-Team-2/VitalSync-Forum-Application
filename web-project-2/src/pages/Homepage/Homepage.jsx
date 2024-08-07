@@ -64,6 +64,9 @@ function Homepage() {
             className="links"
           />
         </NavLink>
+        <NavLink to="/mostliked">
+          Most Liked
+        </NavLink>
       </div>
 
       <div className="bottom-grid">
