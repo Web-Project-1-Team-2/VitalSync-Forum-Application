@@ -1,0 +1,21 @@
+#admin-page {
+    width: 100%;
+}
+
+#dashboard-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+#user-search {
+    margin-bottom: 20px;
+}
+
+#user-search input {
+    padding: 10px;
+    border: 1px solid #FBFEF9;
+    border-radius: 5px;
+    width: 90%;
+    font-size: 15px;
+}

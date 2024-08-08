@@ -1,7 +1,7 @@
 import { NavLink, useNavigate } from "react-router-dom"
 import { logoutUser } from "../../../services/auth.service";
 import { AppContext } from "../../../context/authContext";
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import './Header.css';
 
 
@@ -9,6 +9,16 @@ const Header = () => {
 
     const { user, setAppState } = useContext(AppContext);
     const { userData } = useContext(AppContext);
+    const [currUserData, setCurrUserData] = useState({
+        isBlocked: false
+    });
+
+    useEffect(() => {
+        if (!userData) return;
+
+        setCurrUserData({...userData, isBlocked: (userData.isBlocked || false)});
+    }, [userData])
+
     const navigate = useNavigate()
 
     const logout = async () => {
@@ -23,12 +33,12 @@ const Header = () => {
             <div className="navigation-strip">
                 <NavLink to={'/'} className={"nav-link"}>Home</NavLink>
                 {user && <NavLink to={'/posts'} className={"nav-link"}>Posts</NavLink>}
-                {user && <NavLink to={'/create'} className={"nav-link"}>Create</NavLink>}
+                {(user && !currUserData.isBlocked) && <NavLink to={'/create'} className={"nav-link"}>Create</NavLink>}
+                {userData?.level === 'Admin' && (
+                    <NavLink to="/admin" className={"nav-link"}>Admin Dashboard</NavLink>
+                )}
                 {!user ? <NavLink to={'/login'} className={"nav-link"}>Login</NavLink> : <button onClick={logout} className={"logout-btn"}>Logout</button>}
                 {!user && <NavLink to={'/register'} className={"nav-link"}>Register</NavLink>}
-                {userData?.level === 'Admin' && (
-                    <NavLink to="/admin">Admin Dashboard</NavLink>
-                )}
             </div>
         </div>
 

@@ -69,24 +69,6 @@ export const getPostById = async (id) => {
     };
 };
 
-// export const upVotePost = (handle, postId) => {
-//     const updateObject = {
-//         [`posts/${postId}/ratedBy/${handle}`]: true,
-//         [`users/${handle}/ratedposts/${postId}`]: true,
-//     };
-
-//     return update(ref(db), updateObject);
-// };
-
-// export const downVotePost = (handle, postId) => {
-//     const updateObject = {
-//         [`posts/${postId}/ratedBy/${handle}`]: null,
-//         [`users/${handle}/ratedposts/${postId}`]: null,
-//     };
-
-//     return update(ref(db), updateObject);
-// };
-
 export const deletePost = async (username, postId) => {
     await update(ref(db), {
         [`posts/${postId}`]: null,
@@ -95,8 +77,6 @@ export const deletePost = async (username, postId) => {
     await updatePostCount(username, 'decrement');
     return;
 }
-
-
 
 export const uploadComment = async (postId, author, content) => {
     const postRef = ref(db, `posts/${postId}`);

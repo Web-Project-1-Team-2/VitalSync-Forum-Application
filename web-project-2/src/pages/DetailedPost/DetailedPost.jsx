@@ -38,6 +38,7 @@ const DetailedPost = () => {
         likedPosts: {},
         createdPosts: {},
         level: '',
+        isBlocked: false,
     });
 
     const [modal, setModal] = useState(false);
@@ -48,7 +49,8 @@ const DetailedPost = () => {
         setData({
             ...userData,
             createdPosts: userData.createdPosts || {},
-            likedPosts: userData.likedPosts || {}
+            likedPosts: userData.likedPosts || {},
+            isBlocked: userData.isBlocked || false,
         });
     }, [userData])
 
@@ -115,7 +117,7 @@ const DetailedPost = () => {
                     <div className='detailed-author'>
                         <h3>Author: {currPost.author}</h3>
                         <h4>Category: {currPost.category}</h4>
-                        <h5>Created: {new Date (currPost.createdOn).toLocaleDateString()}</h5>
+                        <h5>Created: {new Date(currPost.createdOn).toLocaleDateString()}</h5>
                     </div>
                 </div>
                 <div className='detailed-content'>
@@ -139,10 +141,12 @@ const DetailedPost = () => {
 
                     {Object.keys(data.createdPosts).includes(id) ? <button onClick={toggle} className='edit-btn'><MdEdit className='edit-btn-icon' /></button> : null}
                 </div>
-                <div className='comment-box'>
-                    <textarea value={comment} placeholder='Write a comment...' onChange={(e) => setComment(e.target.value)} />
-                    <button id='add-button' onClick={commentOnPost} >Add</button>
-                </div>
+                {!data.isBlocked && (
+                    <div className='comment-box'>
+                        <textarea value={comment} placeholder='Write a comment...' onChange={(e) => setComment(e.target.value)} />
+                        <button id='add-button' onClick={commentOnPost} >Add</button>
+                    </div>
+                )}
             </div>
             <div className='detailed-comments'>
                 <h2>Comments</h2>
