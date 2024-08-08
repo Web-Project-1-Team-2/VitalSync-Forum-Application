@@ -12,3 +12,90 @@
     grid-template-columns: 3fr 1fr;
     gap: 30px;
 }
+
+#filters {
+    width: 100%;
+    background-color: #323b2f;
+    color: #FBFEF9;
+    border-radius: 8px;
+    height: fit-content;
+    border: 1px solid #FBFEF9;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding-bottom: 20px;
+}
+
+#filters > h2 {
+    align-self: start;
+    font-size: 30px;
+    margin-left: 15px;
+}
+
+#filter-grid {
+    display: grid;
+    grid-template-rows: 0.8fr 0.8fr 1fr;
+    width: 90%;
+}
+
+
+.filter-search input {
+    font-family: 'Bebas Neue', sans-serif;
+    padding: 5px;
+    border: 1px solid #FBFEF9;
+    border-radius: 5px;
+    width: -webkit-fill-available;
+    font-size: 15px;
+}
+
+.filter-search label {
+    margin-bottom: 5px;
+    font-size: 20px;
+    display: block;
+}
+
+.filter-sort option {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 15px;
+}
+
+.filter-sort select {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 15px;
+    background-color: #121212;
+    width: 100%;
+    border-radius: 5px;
+    padding: 5px 0;
+}
+
+.filter-sort label {
+    margin-bottom: 5px;
+    font-size: 20px;
+    display: block;
+}
+
+.filter-checkbox > label {
+    margin-bottom: 5px;
+    font-size: 20px;
+    display: block;
+}
+
+#filter-checkboxes input{
+    margin-right: 10px;
+    width: 20px;
+    height: 20px;
+    accent-color: #5cab7d;
+}
+
+#filter-checkboxes > div > label {
+    font-size: 18px;
+}
+
+#filter-checkboxes div {
+    display: flex;
+    align-items: center;
+    margin-bottom: 5px;
+}
+
+

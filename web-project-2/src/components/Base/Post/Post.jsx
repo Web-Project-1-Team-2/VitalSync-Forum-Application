@@ -12,13 +12,22 @@ import { notifyError } from '../../../services/notification.service';
 
 
 
-const Post = ({ id, title, author, content, likes, commentCount, creationDate }) => {
+const Post = ({ id, title, author, content, likes, commentCount, creationDate, category }) => {
 
     const { userData } = useContext(AppContext);
     const [data, setData] = useState({
         likedPosts: {},
         createdPosts: {},
     });
+
+
+    const displayCategory = (categ) => {
+        switch (categ) {
+            case 'training': return 'Training & Sport';
+            case 'nutrition': return 'Nutrition';
+            case 'supplements': return 'Supplements';
+        }
+    }
 
     useEffect(() => {
         if (!userData) return;
@@ -54,7 +63,11 @@ const Post = ({ id, title, author, content, likes, commentCount, creationDate })
             <div className='post-box'>
                 <div className='post-content-section'>
                     <div className='title-box'>
-                        <h2>{title}</h2>
+                        <div id='title-category-box'>
+                            <h2>{title}</h2>
+                            <h3> Category: {displayCategory(category)}</h3>
+                        </div>
+
                         <h4> Author: {author}</h4>
                     </div>
                     <div className='content-box'>
@@ -94,6 +107,7 @@ Post.propTypes = {
     likes: PropTypes.number,
     commentCount: PropTypes.number,
     creationDate: PropTypes.string,
+    category: PropTypes.string
 };
 
 export default Post

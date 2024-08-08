@@ -25,20 +25,28 @@
     margin: 10px 0;
 }
 
+.title-box h4 {
+    font-size: 18px;
+    margin: 0;
+}
+
+#title-category-box {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#title-category-box h3 {
+    font-size: 23px;
+    margin: 0;
+}
+
 .content-box {
     padding: 15px;
 }
 
 .content-box p {
     font-size: 16px;
-}
-
-#filters {
-    width: 100%;
-    background-color: #323b2f;
-    color: #FBFEF9;
-    border-radius: 8px;
-    height: 400px;
 }
 
 #details-btn {
