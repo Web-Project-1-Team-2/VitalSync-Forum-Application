@@ -10,7 +10,7 @@
 
 .post-content-section {
     display: grid;
-    grid-template-rows: 0.5fr 0.8fr 0.3fr;
+    grid-template-rows: 0.5fr 0.5fr 0.3fr;
     gap: 10px;
     height: auto;
 }
@@ -47,6 +47,11 @@
 
 .content-box p {
     font-size: 16px;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 #details-btn {
@@ -58,8 +63,8 @@
 #details-btn>button {
     font-family: 'Bebas Neue', sans-serif;
     font-size: 20px;
-    width: 80px;
-    height: 80px;
+    width: 70px;
+    height: 70px;
     background-color: #fbfef9;
     color: #44633f;
     border: none;
@@ -121,4 +126,10 @@
     color: #FBFEF9;
     border: none;
     cursor: pointer;
+}
+
+.view-details-icon {
+    font-size: 40px;
+    margin: 8px 0 0 0;
+    padding: 0;
 }

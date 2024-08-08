@@ -49,45 +49,47 @@ const Admin = () => {
                         {loadingUsers && <h2>Loading...</h2>}
                         {users.length !== 0 ? (
                             users
-                            .filter(user => {
-                                if(user.username.toLowerCase().includes(searchTerm.toLowerCase())) return user;
-                                if(user.email.toLowerCase().includes(searchTerm.toLowerCase())) return user;
-                                if(user.firstName.toLowerCase().includes(searchTerm.toLowerCase())) return user;
-                                if(user.lastName.toLowerCase().includes(searchTerm.toLowerCase())) return user;
-                            })
-                            .map(user => (
-                                <User
-                                    key={user.uid}
-                                    username={user.username}
-                                    email={user.email}
-                                    firstName={user.firstName}
-                                    lastName={user.lastName}
-                                    createdOn={user.createdOn}
-                                    postCount={user.postCount}
-                                    level={user.level}
-                                    isBlocked={user.isBlocked || null }/>
-                            ))
+                                .filter(user => {
+                                    if (user.username.toLowerCase().includes(searchTerm.toLowerCase())) return user;
+                                    if (user.email.toLowerCase().includes(searchTerm.toLowerCase())) return user;
+                                    if (user.firstName.toLowerCase().includes(searchTerm.toLowerCase())) return user;
+                                    if (user.lastName.toLowerCase().includes(searchTerm.toLowerCase())) return user;
+                                })
+                                .map(user => (
+                                    <User
+                                        key={user.uid}
+                                        username={user.username}
+                                        email={user.email}
+                                        firstName={user.firstName}
+                                        lastName={user.lastName}
+                                        createdOn={user.createdOn}
+                                        postCount={user.postCount}
+                                        level={user.level}
+                                        isBlocked={user.isBlocked || null} />
+                                ))
                         ) : (<h2> No users found</h2>)}
                     </div>
                 </div>
-                        
+
                 <div id='post-management'>
                     <h2>Post Management</h2>
                     {loading && <h2>Loading...</h2>}
-                    {posts.length !== 0 ? (
-                        posts
-                        .filter(post => post.author.toLowerCase().includes(searchTerm.toLowerCase()))
-                        .map(post => <Post
-                            key={post.id}
-                            id={post.id}
-                            title={post.title}
-                            author={post.author}
-                            content={post.content}
-                            likes={post.likes || 0}
-                            commentCount={post.commentCount || 0}
-                            creationDate={new Date(post.createdOn).toLocaleDateString()}
-                            category={post.category} />)
-                    ) : (<h2>No posts found</h2>)}
+                    <div id='post-management-list'>
+                        {posts.length !== 0 ? (
+                            posts
+                                .filter(post => post.author.toLowerCase().includes(searchTerm.toLowerCase()))
+                                .map(post => <Post
+                                    key={post.id}
+                                    id={post.id}
+                                    title={post.title}
+                                    author={post.author}
+                                    content={post.content}
+                                    likes={post.likes || 0}
+                                    commentCount={post.commentCount || 0}
+                                    creationDate={new Date(post.createdOn).toLocaleDateString()}
+                                    category={post.category} />)
+                        ) : (<h2>No posts found</h2>)}
+                    </div>
                 </div>
             </div>
         </div>

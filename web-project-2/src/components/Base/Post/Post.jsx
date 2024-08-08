@@ -6,6 +6,7 @@ import { BiSolidUpvote } from "react-icons/bi";
 import { useContext, useEffect, useState } from 'react';
 import { AppContext } from '../../../context/authContext';
 import { FaRegComment } from "react-icons/fa";
+import { CgDetailsMore } from "react-icons/cg";
 import { likePost, unlikePost } from '../../../services/post.service';
 import { notifyError } from '../../../services/notification.service';
 
@@ -92,7 +93,7 @@ const Post = ({ id, title, author, content, likes, commentCount, creationDate, c
                     </div>
                 </div>
                 <div id='details-btn'>
-                    <button onClick={() => navigate(`/posts/${id}`)}> View Details</button>
+                    <button onClick={() => navigate(`/posts/${id}`)}><CgDetailsMore className='view-details-icon'/></button>
                 </div>
             </div>
         </>

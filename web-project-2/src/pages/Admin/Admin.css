@@ -13,9 +13,14 @@
 }
 
 #user-search input {
+    font-family: 'Bebas Neue', sans-serif;
     padding: 10px;
     border: 1px solid #FBFEF9;
     border-radius: 5px;
     width: 90%;
     font-size: 15px;
+}
+
+#post-management-list {
+    margin-top: 81px;
 }
