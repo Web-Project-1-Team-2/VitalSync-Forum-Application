@@ -27,47 +27,6 @@
     grid-template-columns: 1fr 1fr;
     gap: 20px;
   }
-  
-  .post-box {
-    display: flex;
-    flex-direction: column;
-    border: 1px solid #ddd;
-    padding: 20px;
-    border-radius: 8px;
-    background-color: #333; 
-    color: #fff; 
-  }
-  
-  .title-box h2 {
-    margin: 0;
-  }
-  
-  .content-box p {
-    margin: 10px 0 0 0;
-  }
-  
-  .details-btn {
-    margin-top: 10px;
-    align-self: flex-start; 
-  }
-  
-  #details-btn {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-  
-  #details-btn > button {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 20px;
-    width: 80px;
-    height: 80px;
-    background-color: #fbfef9;
-    color: #44633f;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-  }
 
   .count {
     display: flex;
