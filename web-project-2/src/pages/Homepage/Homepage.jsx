@@ -5,6 +5,8 @@ import { useContext, useEffect, useState } from "react";
 import { useListVals } from "react-firebase-hooks/database";
 import { ref } from "firebase/database";
 import { db } from "../../config/firebase-config";
+import { constrains } from "../../common/constrains";
+import Post from "../../components/Base/Post/Post";
 
 function Homepage() {
   const { user } = useContext(AppContext);
@@ -63,41 +65,56 @@ function Homepage() {
             alt="Go to supplements picture"
             className="links"
           />
-        </NavLink>
-        <NavLink to="/mostliked" onClick={handleLinkClick}>
-          Most Liked
-        </NavLink>
-        <NavLink to="/mostcommented" onClick={handleLinkClick}>
-          Most Commented
-        </NavLink>
+        </NavLink>      
       </div>
 
       <div className="bottom-grid">
-        {posts.length !== 0 ? (
-          posts.map((post) => (
-            <div key={post.id} className="post-box">
-              <div>
-                <div className="title-box">
-                  <h2>{post.title}</h2>
-                  <h4>Author: {post.author}</h4>
-                </div>
-                <div className="content-box">
-                  <p>{post.content}</p>
-                </div>
-              </div>
-              <div id="details-btn">
-                {user ? <button onClick={() => navigate(`/posts/${post.id}`)}>
-                  View Details
-                </button> :
-                <button onClick={handleLinkClick}>
-                View Details
-              </button>}
-              </div>
-            </div>
-          ))
+        <div>
+          <h2>Most Liked</h2>
+          <div id="most-liked">
+          {posts.length !== 0 ? (
+          posts
+          .filter((post) => post.likes > constrains.MOST_LIKED_MIN_LIKES)
+          .map((post) => ( <Post 
+            key={post.id}
+            id={post.id}
+            title={post.title}
+            author={post.author}
+            content={post.content}
+            likes={post.likes || 0}
+            commentCount={post.commentCount || 0}
+            creationDate={new Date(post.createdOn).toLocaleDateString()}
+            category={post.category}         
+          />))
         ) : (
           <h2>No posts found</h2>
         )}
+
+          </div>
+        </div>
+
+        <div>
+          <h2>Most Commented</h2>
+          <div id="most commented">
+          {posts.length !== 0 ? (
+          posts
+          .filter((post) => post.commentCount > constrains.MOST_COMMENTED_MIN_COMMENTS)
+          .map((post) => (<Post
+            key={post.id}
+            id={post.id}
+            title={post.title}
+            author={post.author}
+            content={post.content}
+            likes={post.likes || 0}
+            commentCount={post.commentCount || 0}
+            creationDate={new Date(post.createdOn).toLocaleDateString()}
+            category={post.category} /> ))
+        ) : (
+          <h2>No posts found</h2>
+        )}
+          </div>
+        </div>
+        
       </div>
     </div>
   );
