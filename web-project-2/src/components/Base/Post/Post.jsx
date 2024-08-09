@@ -15,7 +15,7 @@ import { notifyError } from '../../../services/notification.service';
 
 const Post = ({ id, title, author, content, likes, commentCount, creationDate, category }) => {
 
-    const { userData } = useContext(AppContext);
+    const { user, userData } = useContext(AppContext);
     const [data, setData] = useState({
         likedPosts: {},
         createdPosts: {},
@@ -78,13 +78,13 @@ const Post = ({ id, title, author, content, likes, commentCount, creationDate, c
                         <div id='interaction-buttons-section'>
                             <div id='small-like-section'>
                                 {Object.keys(data.likedPosts).includes(id) ?
-                                    <button className='small-like-button' onClick={unlikeCurrPost} ><BiSolidUpvote /></button> :
-                                    <button className='small-like-button' onClick={likeCurrPost}><BiUpvote /></button>
+                                    <button className='small-like-button' onClick={user ? unlikeCurrPost : () => navigate(`/login`)} ><BiSolidUpvote /></button> :
+                                    <button className='small-like-button' onClick={user ? likeCurrPost : () => navigate(`/login`)}><BiUpvote /></button>
                                 }
                                 <p>{likes}</p>
                             </div>
                             <div id='small-comment-section'>
-                                <button className='small-comment-button' onClick={() => navigate(`/posts/${id}`)}><FaRegComment /></button>
+                                <button className='small-comment-button' onClick={user ? () => navigate(`/posts/${id}`) : () => navigate(`/login`)}><FaRegComment /></button>
                                 <p>{commentCount}</p>
                             </div>
                         </div>
@@ -93,7 +93,7 @@ const Post = ({ id, title, author, content, likes, commentCount, creationDate, c
                     </div>
                 </div>
                 <div id='details-btn'>
-                    <button onClick={() => navigate(`/posts/${id}`)}><CgDetailsMore className='view-details-icon'/></button>
+                    <button onClick={user ? () => navigate(`/posts/${id}`) : () => navigate(`/login`)}><CgDetailsMore className='view-details-icon'/></button>
                 </div>
             </div>
         </>

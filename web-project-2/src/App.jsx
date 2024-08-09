@@ -24,6 +24,7 @@ import Authenticated from './components/hoc/Authenticated'
 import { useObjectVal } from 'react-firebase-hooks/database'
 import { ref } from 'firebase/database'
 import Admin from './pages/Admin/Admin';
+import Profile from './pages/Profile/Profile'
 
 
 function App() {
@@ -74,6 +75,7 @@ function App() {
           <Route path='/create' element={<Authenticated><CreatePost /></Authenticated>} />
           <Route path='*' element={<PageNotFound />} />
           <Route path='/admin' element={<Admin />} />
+          <Route path='/profile' element={<Authenticated><Profile /></Authenticated>} />
         </Routes>
       </Container>
       <Footer />

@@ -37,6 +37,7 @@ const Header = () => {
                 {userData?.level === 'Admin' && (
                     <NavLink to="/admin" className={"nav-link"}>Admin Dashboard</NavLink>
                 )}
+                {user && <NavLink to={'/profile'} className={"nav-link"}>Profile</NavLink>}
                 {!user ? <NavLink to={'/login'} className={"nav-link"}>Login</NavLink> : <button onClick={logout} className={"logout-btn"}>Logout</button>}
                 {!user && <NavLink to={'/register'} className={"nav-link"}>Register</NavLink>}
             </div>

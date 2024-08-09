@@ -16,3 +16,7 @@ export const getUserData = async (uid) => {
     const snapshot = await get(query(ref(db, 'users'), orderByChild('uid'), equalTo(uid)));
     return snapshot.val(); 
 };
+
+export const setImageUrl = async (username, url) => {
+    return await set(ref(db, `users/${username}/avatar`), url);
+}
