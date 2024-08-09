@@ -4,6 +4,7 @@ import { useListVals } from 'react-firebase-hooks/database';
 import { db } from '../../config/firebase-config';
 import { ref } from 'firebase/database';
 import { useNavigate } from 'react-router-dom';
+import Post from '../../components/Base/Post/Post';
 
 function Training() {
   const [posts, setPosts] = useState([]);
@@ -38,24 +39,16 @@ function Training() {
         {posts.filter(post => post.category === 'training').length !== 0 ? (
           posts
             .filter(post => post.category === 'training')
-            .map(post => (
-              <div key={post.id} className="post-box">
-                <div>
-                  <div className="title-box">
-                    <h2>{post.title}</h2>
-                    <h4>Author: {post.author}</h4>
-                  </div>
-                  <div className="content-box">
-                    <p>{post.content}</p>
-                  </div>
-                </div>
-                <div id="details-btn">
-                  <button onClick={() => navigate(`/posts/${post.id}`)}>
-                    View Details
-                  </button>
-                </div>
-              </div>
-            ))
+            .map(post => (<Post
+              key={post.id}
+              id={post.id}
+              title={post.title}
+              author={post.author}
+              content={post.content}
+              likes={post.likes || 0}
+              commentCount={post.commentCount || 0}
+              creationDate={new Date(post.createdOn).toLocaleDateString()}
+              category={post.category} /> ))
         ) : (
           <h2>No posts found</h2>
         )}
