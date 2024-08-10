@@ -74,7 +74,8 @@ function Homepage() {
           <div id="most-liked">
           {posts.length !== 0 ? (
           posts
-          .filter((post) => post.likes > constrains.MOST_LIKED_MIN_LIKES)
+          .sort((a,b) => b.likes || 0 - a.likes || 0)
+          .slice(0, Math.min(posts.length, 10))
           .map((post) => ( <Post 
             key={post.id}
             id={post.id}
@@ -96,9 +97,11 @@ function Homepage() {
         <div>
           <h2>Most Commented</h2>
           <div id="most commented">
+          {console.log((posts[4]).commentCount)}
           {posts.length !== 0 ? (
           posts
-          .filter((post) => post.commentCount > constrains.MOST_COMMENTED_MIN_COMMENTS)
+          .sort((a,b) => b.commentCount || 0 - a.commentCount || 0)
+          .slice(0, Math.min(posts.length, 10))
           .map((post) => (<Post
             key={post.id}
             id={post.id}
