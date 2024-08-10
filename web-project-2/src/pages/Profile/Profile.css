@@ -54,23 +54,22 @@
     position: fixed;
 }
 
-#main-information > h1, h2, h3 {
+#main-information-profile > h1 {
+    font-size: 40px;
     margin: 0 0 10px 40px;
 }
 
-#main-information > h1 {
-    font-size: 40px;
-}
-
-#main-information > h2 {
+#main-information-profile > h2 {
     font-size: 35px;
+    margin: 0 0 10px 40px;
 }
 
-#main-information > h3 {
+#main-information-profile> h3 {
     font-size: 25px;
+    margin: 0 0 10px 40px;
 }
 
-#user-stats {
+/* #user-stats {
     width: 340px;
     height: 404px;
     background-color: #323b2f;
@@ -82,7 +81,7 @@
     position: fixed;
     left: 72.9%;
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.9);
-}
+} */
 
 #user-stats > h2 {
     margin: 20px 0 10px 0;

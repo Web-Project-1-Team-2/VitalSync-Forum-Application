@@ -14,6 +14,7 @@ import { BiSolidUpvote } from "react-icons/bi";
 import { FaRegComment } from "react-icons/fa";
 import { MdEdit } from "react-icons/md";
 import EditPost from '../../components/Base/EditPost/EditPost';
+import { defaultAvatar } from '../../common/constrains';
 
 const DetailedPost = () => {
 
@@ -41,6 +42,10 @@ const DetailedPost = () => {
         isBlocked: false,
     });
 
+    const [avatar, avatarLoading] = useObjectVal(ref(db, `users/${currPost.author}/avatar`));
+    const [authorAvatar, setAuthorAvatar] = useState('');
+
+
     const [modal, setModal] = useState(false);
     const toggle = () => setModal(!modal);
 
@@ -52,23 +57,27 @@ const DetailedPost = () => {
             likedPosts: userData.likedPosts || {},
             isBlocked: userData.isBlocked || false,
         });
-    }, [userData])
+    }, [userData]);
 
     useEffect(() => {
         if (!post) return;
         setCurrPost({ ...post });
-    }, [post])
+    }, [post]);
 
     useEffect(() => {
         if (!comments) return;
         const updatedList = comments.filter((el) => 'id' in el);
         setCurrComments([...updatedList]);
-    }, [comments])
+    }, [comments]);
 
+    useEffect(() => {
+        if (!avatar) return;
+        setAuthorAvatar(avatar);
+    }, [avatar]);
 
     const deleteCurrPost = async () => {
         try {
-            await deletePost(userData.username, id);
+            await deletePost(currPost.author, id);
             notifySuccess('Post deleted successfully!');
             navigate('/posts');
         } catch (error) {
@@ -115,9 +124,16 @@ const DetailedPost = () => {
                         <h1>{currPost.title}</h1>
                     </div>
                     <div className='detailed-author'>
-                        <h3>Author: {currPost.author}</h3>
-                        <h4>Category: {currPost.category}</h4>
-                        <h5>Created: {new Date(currPost.createdOn).toLocaleDateString()}</h5>
+                        <div className='detailed-author-information'>
+                            <h3>Author: {currPost.author}</h3>
+                            <h4>Category: {currPost.category}</h4>
+                            <h5>Created: {new Date(currPost.createdOn).toLocaleDateString()}</h5>
+                        </div>
+                        <div id='avatar-detailed'>
+                            {avatarLoading && <div id='avatar-loading'></div>}
+                            <img src={authorAvatar || defaultAvatar} alt='author-avatar' />
+                        </div>
+
                     </div>
                 </div>
                 <div className='detailed-content'>

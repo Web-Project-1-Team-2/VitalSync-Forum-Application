@@ -187,15 +187,29 @@ export const unlikeComment = async (postId, commentId, user) => {
     await update(ref(db), { [`users/${user}/likedComments/${commentId}`]: null, });
 }
 
-export const editPost = async(postId, title, content) => {
+export const editPost = async (postId, title, content) => {
     await update(ref(db), {
         [`posts/${postId}/title`]: title,
         [`posts/${postId}/content`]: content,
     });
 }
 
-export const editComment = async(postId, commentId, content) => {
+export const editComment = async (postId, commentId, content) => {
     await update(ref(db), {
         [`posts/${postId}/comments/${commentId}/content`]: content,
     });
+}
+
+export const getPostAuthorAvatar = async (username, postId) => {
+    const userRef = ref(db, `users/${username}`);
+    const snapshot = await get(userRef);
+    const userData = snapshot.val();
+
+    if (!userData.createdPosts) {
+        return null;
+    }
+
+    if (userData.createdPosts[postId]) {
+        return userData.avatar;
+    }
 }

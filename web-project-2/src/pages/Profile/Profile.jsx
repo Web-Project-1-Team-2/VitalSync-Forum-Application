@@ -61,7 +61,7 @@ const Profile = () => {
                         <FaPlus id='plus-upload'/>
                     </div>
                 </div>
-                <div id='main-information'>
+                <div id='main-information-profile'>
                     <h1>{data.username}</h1>
                     <h2>{data.firstName} {data.lastName}</h2>
                     <h3>{data.email}</h3>

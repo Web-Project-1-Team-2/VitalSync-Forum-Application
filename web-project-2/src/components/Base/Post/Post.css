@@ -1,6 +1,7 @@
 .post-box {
     background-color: #323b2f;
     color: #FBFEF9;
+    border: solid 2px #FBFEF9;
     padding: 10px;
     border-radius: 5px;
     margin-bottom: 20px;

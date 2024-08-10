@@ -1,0 +1,124 @@
+.post-box-large {
+    background-color: #323b2f;
+    color: #FBFEF9;
+    border: solid 2px #FBFEF9;
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    display: grid;
+    grid-template-columns: 0.5fr 4fr 0.5fr;
+    gap: 20px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.9);
+}
+
+.author-information-avatar {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.post-author-avatar>img {
+    width: 120px;
+    height: 120px;
+    border-radius: 8px;
+    border: 2px solid #FBFEF9;
+    margin: 0 10px;
+}
+
+.author-information-avatar > h2 {
+    font-size: 1.8rem;
+    margin: 10px 10px;
+}
+
+.post-info-box {
+    display: grid;
+    grid-template-rows: 0.5fr 0.8fr 0.5fr;
+    gap: 10px;
+}
+
+.title-category-section {
+    border-bottom: solid 2px #FBFEF9;
+}
+
+.title-category-section > h2 {
+    font-size: 2.2rem;
+    margin: 10px 0 0 0;
+}
+
+.title-category-section > h3 {
+    font-size: 1.8rem;
+    margin: 10px 0 0 0;
+}
+
+.content-section > p {
+    font-size: 1.2rem;
+    line-height: 1.5;
+    margin: 10px 0;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.interactions-section {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.interactions-section > p {
+    font-size: 1.5rem;
+    margin: 10px 0;
+}
+
+.post-interaction-buttons {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.like-section-post {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+}
+
+.like-section-post > p {
+    font-size: 1.8rem;
+    margin: 0;
+    line-height: 1; 
+}
+
+.post-comment-section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+}
+
+.post-comment-section > p {
+    font-size: 1.8rem;
+    margin: 0;
+    line-height: 1; 
+}
+
+.small-comment-button{
+    font-size: 25px;
+    background-color: #5a936700;
+    color: #FBFEF9;
+    border: none;
+    cursor: pointer;
+    padding: 5px;
+}
+
+.small-like-button {
+    font-size: 28px;
+    background-color: #5a936700;
+    color: #FBFEF9;
+    border: none;
+    cursor: pointer;
+    padding: 3px;
+}

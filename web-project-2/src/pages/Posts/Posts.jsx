@@ -3,7 +3,9 @@ import { useEffect, useState } from "react";
 import { db } from "../../config/firebase-config";
 import { ref } from 'firebase/database';
 import './Posts.css';
-import Post from '../../components/Base/Post/Post';
+import PostLarge from '../../components/Base/Post/PostLarge';
+import { getPostAuthorAvatar } from '../../services/post.service';
+
 
 const Posts = () => {
 
@@ -13,20 +15,34 @@ const Posts = () => {
     const [searchTerm, setSearchTerm] = useState('');
 
     const [sortFilter, setSortFilter] = useState('');
-    console.log(sortFilter);
 
     const [categoryFilter, setCategoryFilter] = useState({
         trainingAndSport: false,
         nutrition: false,
         supplements: false
     });
-    console.log(categoryFilter);
 
 
+
+    const getCurrPostAvatar = async () => {
+        try {
+            const currPosts = await Promise.all(snapshots.map(async (post) => {
+                const avatar = await getPostAuthorAvatar(post.author, post.id);
+                console.log(avatar);
+                
+
+                return { ...post, avatar: avatar };
+            }))
+
+            setPosts([...currPosts]);
+        } catch (error) {
+            console.log(error.message);
+        }
+    }
 
     useEffect(() => {
         if (!snapshots) return;
-        setPosts([...snapshots]);
+        getCurrPostAvatar();
     }, [snapshots])
 
     return (
@@ -58,11 +74,12 @@ const Posts = () => {
                                 }
                             })
                             .map(post =>
-                                <Post
+                                <PostLarge
                                     key={post.id}
                                     id={post.id}
                                     title={post.title}
                                     author={post.author}
+                                    avatar={post.avatar}
                                     content={post.content}
                                     likes={post.likes || 0}
                                     commentCount={post.commentCount || 0}

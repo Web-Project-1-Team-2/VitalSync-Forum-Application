@@ -1,6 +1,6 @@
 .user-box {
     background-color: #323b2f;
-    border: 1px solid #fbfef9;
+    border: 2px solid #fbfef9;
     border-radius: 8px;
     display: grid;
     grid-template-columns: 1fr 0.3fr;
