@@ -3,13 +3,13 @@ import './Training.css'
 import { useListVals } from 'react-firebase-hooks/database';
 import { db } from '../../config/firebase-config';
 import { ref } from 'firebase/database';
-import { useNavigate } from 'react-router-dom';
-import Post from '../../components/Base/Post/Post';
+
+import PostLarge from '../../components/Base/Post/PostLarge';
 
 function Training() {
   const [posts, setPosts] = useState([]);
   const [snapshots, loading] = useListVals(ref(db, 'posts'));
-  const navigate = useNavigate();
+ 
 
   useEffect(() => {
     if (snapshots) {
@@ -39,7 +39,7 @@ function Training() {
         {posts.filter(post => post.category === 'training').length !== 0 ? (
           posts
             .filter(post => post.category === 'training')
-            .map(post => (<Post
+            .map(post => (<PostLarge
               key={post.id}
               id={post.id}
               title={post.title}

@@ -3,13 +3,12 @@ import './Nutrition.css'
 import { useListVals } from 'react-firebase-hooks/database';
 import { ref } from 'firebase/database';
 import { db } from '../../config/firebase-config';
-import { useNavigate } from 'react-router-dom';
-import Post from '../../components/Base/Post/Post';
+import PostLarge from '../../components/Base/Post/PostLarge';
 
 function Nutrition() {
   const [posts,setPosts] = useState([]);
   const [snapshots,loading] = useListVals(ref(db, 'posts'));
-  const navigate = useNavigate();
+ 
   
   useEffect(() => {
     if (snapshots) {
@@ -39,7 +38,7 @@ function Nutrition() {
         {posts.filter(post => post.category === 'nutrition').length !== 0 ? (
           posts
             .filter(post => post.category === 'nutrition')
-            .map(post => (<Post
+            .map(post => (<PostLarge
               key={post.id}
               id={post.id}
               title={post.title}

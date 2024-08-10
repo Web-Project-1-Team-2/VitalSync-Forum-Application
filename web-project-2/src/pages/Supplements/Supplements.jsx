@@ -3,7 +3,7 @@ import "./Supplements.css";
 import { useListVals } from "react-firebase-hooks/database";
 import { ref } from "firebase/database";
 import { db } from "../../config/firebase-config";
-import Post from "../../components/Base/Post/Post";
+import PostLarge from "../../components/Base/Post/PostLarge";
 
 function Supplements() {
   const [posts, setPosts] = useState([]);
@@ -42,7 +42,7 @@ function Supplements() {
           posts
             .filter((post) => post.category === "supplements")
             .map((post) => (
-              <Post
+              <PostLarge
                 key={post.id}
                 id={post.id}
                 title={post.title}
