@@ -4,7 +4,6 @@ import { db } from "../../config/firebase-config";
 import { ref } from 'firebase/database';
 import './Posts.css';
 import PostLarge from '../../components/Base/Post/PostLarge';
-import { getPostAuthorAvatar } from '../../services/post.service';
 
 
 const Posts = () => {
@@ -22,28 +21,12 @@ const Posts = () => {
         supplements: false
     });
 
-
-
-    const getCurrPostAvatar = async () => {
-        try {
-            const currPosts = await Promise.all(snapshots.map(async (post) => {
-                const avatar = await getPostAuthorAvatar(post.author, post.id);
-                console.log(avatar);
-                
-
-                return { ...post, avatar: avatar };
-            }))
-
-            setPosts([...currPosts]);
-        } catch (error) {
-            console.log(error.message);
-        }
-    }
-
     useEffect(() => {
-        if (!snapshots) return;
-        getCurrPostAvatar();
-    }, [snapshots])
+    if (!snapshots) return;
+    
+    setPosts([...snapshots]);
+}, [snapshots])
+
 
     return (
         <div className='post-page'>
@@ -79,7 +62,6 @@ const Posts = () => {
                                     id={post.id}
                                     title={post.title}
                                     author={post.author}
-                                    avatar={post.avatar}
                                     content={post.content}
                                     likes={post.likes || 0}
                                     commentCount={post.commentCount || 0}
@@ -146,3 +128,5 @@ const Posts = () => {
 }
 
 export default Posts
+
+

@@ -61,6 +61,10 @@
     cursor: pointer;
 }
 
+#add-button:hover {
+    background-color: #375c40;
+}
+
 #int-section {
     display: flex;
     align-items: center;
@@ -130,6 +134,10 @@
     border: none;
     border-radius: 5px;
     cursor: pointer;
+}
+
+.edit-btn:hover {
+    background-color: #375c40;
 }
 
 .edit-btn-icon {

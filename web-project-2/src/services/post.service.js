@@ -199,17 +199,3 @@ export const editComment = async (postId, commentId, content) => {
         [`posts/${postId}/comments/${commentId}/content`]: content,
     });
 }
-
-export const getPostAuthorAvatar = async (username, postId) => {
-    const userRef = ref(db, `users/${username}`);
-    const snapshot = await get(userRef);
-    const userData = snapshot.val();
-
-    if (!userData.createdPosts) {
-        return null;
-    }
-
-    if (userData.createdPosts[postId]) {
-        return userData.avatar;
-    }
-}

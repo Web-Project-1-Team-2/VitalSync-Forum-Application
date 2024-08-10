@@ -5,7 +5,6 @@ import { useContext, useEffect, useState } from "react";
 import { useListVals } from "react-firebase-hooks/database";
 import { ref } from "firebase/database";
 import { db } from "../../config/firebase-config";
-import { constrains } from "../../common/constrains";
 import Post from "../../components/Base/Post/Post";
 
 function Homepage() {
@@ -96,7 +95,8 @@ function Homepage() {
 
         <div>
           <h2>Most Commented</h2>
-          <div id="most commented">        
+          <div id="most commented">
+          {console.log((posts[4]).commentCount)}
           {posts.length !== 0 ? (
           posts
           .sort((a,b) => b.commentCount || 0 - a.commentCount || 0)

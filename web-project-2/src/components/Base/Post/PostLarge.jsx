@@ -10,17 +10,23 @@ import { likePost, unlikePost } from '../../../services/post.service';
 import { notifyError } from '../../../services/notification.service';
 import { defaultAvatar } from '../../../common/constrains';
 import './PostLarge.css'
+import { useObjectVal } from 'react-firebase-hooks/database';
+import { ref } from 'firebase/database';
+import { db } from '../../../config/firebase-config';
 
 
 
 
-const PostLarge = ({ id, title, author, avatar, content, likes, commentCount, creationDate, category }) => {
+const PostLarge = ({ id, title, author, content, likes, commentCount, creationDate, category }) => {
 
     const { user, userData } = useContext(AppContext);
     const [data, setData] = useState({
         likedPosts: {},
         createdPosts: {},
     });
+
+    const [avatar, avatarLoading] = useObjectVal(ref(db, `users/${author}/avatar`));
+    const [authorAvatar, setAuthorAvatar] = useState('');
 
     const displayCategory = (categ) => {
         switch (categ) {
@@ -38,6 +44,11 @@ const PostLarge = ({ id, title, author, avatar, content, likes, commentCount, cr
             likedPosts: userData.likedPosts || {}
         });
     }, [userData])
+
+    useEffect(() => {
+        if (!avatar) return;
+        setAuthorAvatar(avatar);
+    }, [avatar]);
 
     const navigate = useNavigate();
 
@@ -64,7 +75,8 @@ const PostLarge = ({ id, title, author, avatar, content, likes, commentCount, cr
             <div className='post-box-large'>
                 <div className='author-information-avatar'>
                     <div className='post-author-avatar'>
-                        <img src={avatar || defaultAvatar} alt="avatar" />
+                        {avatarLoading && <p>Loading...</p>}
+                        <img src={authorAvatar || defaultAvatar} alt="avatar" />
                     </div>
                     <h2>{author}</h2>
                 </div>
@@ -106,7 +118,6 @@ PostLarge.propTypes = {
     id: PropTypes.string,
     title: PropTypes.string,
     author: PropTypes.string,
-    avatar: PropTypes.string,
     content: PropTypes.string,
     likes: PropTypes.number,
     commentCount: PropTypes.number,
