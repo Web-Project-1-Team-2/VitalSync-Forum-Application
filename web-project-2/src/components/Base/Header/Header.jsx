@@ -3,6 +3,7 @@ import { logoutUser } from "../../../services/auth.service";
 import { AppContext } from "../../../context/authContext";
 import { useContext, useEffect, useState } from "react";
 import './Header.css';
+import Logo from "../Logo/Logo";
 
 
 const Header = () => {
@@ -29,9 +30,9 @@ const Header = () => {
 
     return (
         <div className="header">
-            <div className="navigation-logo"><h3>Insert Logo here</h3></div>
+            <Logo className="navigation-logo"><h3></h3></Logo>
             <div className="navigation-strip">
-                <NavLink to={'/'} className={"nav-link"}>Home</NavLink>
+                {/* <NavLink to={'/'} className={"nav-link"}>Home</NavLink> */}
                 {user && <NavLink to={'/posts'} className={"nav-link"}>Posts</NavLink>}
                 {(user && !currUserData.isBlocked) && <NavLink to={'/create'} className={"nav-link"}>Create</NavLink>}
                 {userData?.level === 'Admin' && (
