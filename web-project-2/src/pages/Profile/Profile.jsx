@@ -41,7 +41,7 @@ const Profile = () => {
             isBlocked: userData.isBlocked || false,
         });
     }, [userData])
-
+    
     useEffect(() => {
         if (!snapshots) return;
         setPosts([...snapshots]);
