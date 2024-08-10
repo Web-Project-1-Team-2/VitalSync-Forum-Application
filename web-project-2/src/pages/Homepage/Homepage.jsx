@@ -61,7 +61,7 @@ function Homepage() {
         </NavLink>
         <NavLink to="/supplements" onClick={handleLinkClick}>
           <img
-            src="/supplements.png"
+            src="/sup.jpg"
             alt="Go to supplements picture"
             className="links"
           />
@@ -96,8 +96,7 @@ function Homepage() {
 
         <div>
           <h2>Most Commented</h2>
-          <div id="most commented">
-          {console.log((posts[4]).commentCount)}
+          <div id="most commented">        
           {posts.length !== 0 ? (
           posts
           .sort((a,b) => b.commentCount || 0 - a.commentCount || 0)
