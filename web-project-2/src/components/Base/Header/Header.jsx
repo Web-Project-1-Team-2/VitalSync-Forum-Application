@@ -17,7 +17,7 @@ const Header = () => {
     useEffect(() => {
         if (!userData) return;
 
-        setCurrUserData({...userData, isBlocked: (userData.isBlocked || false)});
+        setCurrUserData({ ...userData, isBlocked: (userData.isBlocked || false) });
     }, [userData])
 
     const navigate = useNavigate()
@@ -30,7 +30,7 @@ const Header = () => {
 
     return (
         <div className="header">
-            <Logo className="navigation-logo"><h3></h3></Logo>
+            <Logo className="navigation-logo" />
             <div className="navigation-strip">
                 {/* <NavLink to={'/'} className={"nav-link"}>Home</NavLink> */}
                 {user && <NavLink to={'/posts'} className={"nav-link"}>Posts</NavLink>}
@@ -39,7 +39,7 @@ const Header = () => {
                     <NavLink to="/admin" className={"nav-link"}>Admin Dashboard</NavLink>
                 )}
                 {user && <NavLink to={'/profile'} className={"nav-link"}>Profile</NavLink>}
-                {!user ? <NavLink to={'/login'} className={"nav-link"}>Login</NavLink> : <button onClick={logout} className={"logout-btn"}>Logout</button>}
+                {!user ? <NavLink to={'/login'} className={"nav-link"}>Login</NavLink> : <button onClick={logout} className="logout-btn">Logout</button>}
                 {!user && <NavLink to={'/register'} className={"nav-link"}>Register</NavLink>}
             </div>
         </div>

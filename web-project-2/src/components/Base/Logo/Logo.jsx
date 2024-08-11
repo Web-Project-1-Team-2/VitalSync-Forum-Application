@@ -8,7 +8,7 @@ function Logo() {
 
     return (
         <Link to='/'>
-            <img src="/cropped-phf_logo.png" alt="" className="logo" />
+            <img src="/Logo-Forum-Project.png" alt="" className="logo" />
         </Link>
     )
 }

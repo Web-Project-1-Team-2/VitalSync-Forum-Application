@@ -37,7 +37,7 @@
     margin: 0;
 }
 
-#user-stats {
+#user-stats-author {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -45,11 +45,11 @@
 
 .user-stats-section {
     display: grid;
-    grid-template-rows: 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
     gap: 10px;
 }
 
-#user-stats p {
+#user-stats-author p {
     font-size: 20px;
     margin: 0;
 }
@@ -68,5 +68,21 @@
     border-radius: 5px;
     font-size: 20px;
     margin: 0;
+    cursor: pointer;
+}
+
+.view-user-profile {
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+}
+
+.view-user-profile > button {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 20px;
+    background-color: #FBFEF9;
+    color: #323b2f;
+    border: none;
+    border-radius: 5px;
     cursor: pointer;
 }

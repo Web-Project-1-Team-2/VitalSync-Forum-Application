@@ -90,7 +90,7 @@ const Profile = () => {
                 <h2>Level: {data.level}</h2>
                 <h3>Created Posts: {Object.keys(data.createdPosts).length || 0}</h3>
 
-                <h3>{data.isBlocked && <h3>You are blocked. Contact an admin!</h3>  }</h3>
+                <h4>{data.isBlocked && <h3>You are blocked. Contact an admin!</h3>  }</h4>
             </div>
 
             <UploadAvatar 

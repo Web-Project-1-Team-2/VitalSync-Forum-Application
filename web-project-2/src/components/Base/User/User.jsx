@@ -2,9 +2,16 @@ import PropTypes from 'prop-types';
 import './User.css';
 import { blockUser } from '../../../services/admin.service';
 import { notifyError, notifySuccess } from '../../../services/notification.service';
+import { useContext } from 'react';
+import { AppContext } from '../../../context/authContext';
+import { useNavigate } from 'react-router-dom';
 
 
 const User = ({ username, email, firstName, lastName, createdOn, level, postCount, isBlocked }) => {
+
+    const { userData } = useContext(AppContext);
+
+    const navigate = useNavigate();
 
     const toggleBlock = async () => {
         try {
@@ -36,9 +43,14 @@ const User = ({ username, email, firstName, lastName, createdOn, level, postCoun
                 <p>Created on: {createdOn}</p>
             </div>
             <div className='user-stats-section'>
-                <div id='user-stats'>
+                <div id='user-stats-author'>
                     <p>Level: {level}</p>
                     <p>Posts: {postCount}</p>
+                </div>
+                <div className='view-user-profile'>
+                    <button onClick={username === userData.username ? 
+                        () => navigate(`/profile`) :
+                        () => navigate(`/profile/${username}`)}>View Profile</button>
                 </div>
                 <div id='block-btn'>
                     {level === 'Rookie' && (

@@ -68,7 +68,7 @@
     width: 70px;
     height: 70px;
     background-color: #fbfef9;
-    color: #44633f;
+    color: #323b2f;
     border: none;
     border-radius: 5px;
     cursor: pointer;
@@ -134,4 +134,5 @@
     font-size: 40px;
     margin: 8px 0 0 0;
     padding: 0;
+    
 }

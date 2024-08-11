@@ -49,6 +49,7 @@ const Admin = () => {
                         {loadingUsers && <h2>Loading...</h2>}
                         {users.length !== 0 ? (
                             users
+                                .filter(user => user.level !== 'Admin')
                                 .filter(user => {
                                     if (user.username.toLowerCase().includes(searchTerm.toLowerCase())) return user;
                                     if (user.email.toLowerCase().includes(searchTerm.toLowerCase())) return user;

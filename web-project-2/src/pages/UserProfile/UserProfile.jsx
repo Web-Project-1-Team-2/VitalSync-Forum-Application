@@ -1,11 +1,14 @@
 import '../Profile/Profile.css';
 import { useParams } from "react-router-dom";
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { useListVals, useObjectVal } from 'react-firebase-hooks/database';
 import { ref } from 'firebase/database';
 import { db } from '../../config/firebase-config';
 import Post from '../../components/Base/Post/Post';
 import { defaultAvatar } from '../../common/constrains';
+import { AppContext } from '../../context/authContext';
+import { blockUser } from '../../services/admin.service';
+import { notifyError, notifySuccess } from '../../services/notification.service';
 
 const UserProfile = () => {
 
@@ -23,6 +26,8 @@ const UserProfile = () => {
 
     const [posts, setPosts] = useState([]);
     const [snapshots, loading] = useListVals(ref(db, 'posts'));
+
+    const { userData } = useContext(AppContext);
 
     useEffect(() => {
         if (!author) return;
@@ -43,6 +48,24 @@ const UserProfile = () => {
     }, [snapshots])
 
 
+    const toggleBlock = async () => {
+        try {
+            await blockUser(username);
+
+            if(authorData.isBlocked) {
+                notifySuccess('User unblocked successfully');
+            } else {
+                notifySuccess('User blocked successfully');
+            }
+        } catch (error) {
+            console.error(error);
+            if(authorData.isBlocked) {
+                notifyError('User unblocked successfully');
+            } else {
+                notifyError('Error blocking user');
+            }
+        }
+    }
 
 
     return (
@@ -83,7 +106,14 @@ const UserProfile = () => {
                 <h2>Level: {authorData.level}</h2>
                 <h3>Created Posts: {Object.keys(authorData.createdPosts).length || 0}</h3>
 
-                <h3>{authorData.isBlocked && <h3>User is blocked at the moment!</h3>  }</h3>
+                <div id='block-btn'>
+                {(userData?.level === 'Admin' && authorData.level !== 'Admin') && (
+                    authorData.isBlocked ? 
+                    <button className=''onClick={() => toggleBlock(authorData.username)}>Unblock User</button> : 
+                    <button onClick={() => toggleBlock(authorData.username)}>Block User</button>
+                ) }
+                </div>
+                <h4>{authorData.isBlocked && <h3>User is blocked at the moment!</h3>  }</h4>
             </div>
         </div>
     )
