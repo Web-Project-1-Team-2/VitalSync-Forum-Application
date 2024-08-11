@@ -6,7 +6,7 @@
 }
 
 .create-grid {
-    width: 50%;
+    width: 60%;
     display: grid;
     grid-template-columns: 1fr;
     grid-template-rows: 1fr 2fr;
@@ -17,7 +17,8 @@
 
 .create-grid label {
     display: block;
-    font-size: 20px;
+    font-size: 25px;
+    margin-bottom: 5px;
 }
 
 .create-grid input {
@@ -25,7 +26,7 @@
     border: 1px solid #FBFEF9;
     border-radius: 5px;
     width: -webkit-fill-available;
-    font-size: 15px;
+    font-size: 20px;
     font-family: 'Bebas Neue', sans-serif;
 }
 
@@ -36,7 +37,7 @@
     height: 100px;
     width: -webkit-fill-available;
     resize: none;
-    font-size: 15px;
+    font-size: 20px;
     font-family: 'Bebas Neue', sans-serif;
 }
 
@@ -61,23 +62,24 @@
 
 .category-grid {
     display: grid;
-    grid-template-columns: 1fr 3fr;
+    grid-template-columns: 0.5fr 3fr;
     gap: 10px;
     margin-bottom: 10px;
 }
 
 .category-grid select {
     width: 100%;
-    padding: 5px;
+    padding: 10px;
+    border-radius: 5px;
 }
 
 .category-grid option {
     font-family: 'Bebas Neue', sans-serif;
-    font-size: 15px;
+    font-size: 18px;
 }
 
 .category-grid select {
     font-family: 'Bebas Neue', sans-serif;
-    font-size: 15px;
+    font-size: 18px;
     background-color: #121212;
 }

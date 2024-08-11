@@ -15,6 +15,7 @@ import { FaRegComment } from "react-icons/fa";
 import { MdEdit } from "react-icons/md";
 import EditPost from '../../components/Base/EditPost/EditPost';
 import { defaultAvatar } from '../../common/constrains';
+import AlertDelete from '../../components/Base/AlertDeleteModal/AlertDelete';
 
 const DetailedPost = () => {
 
@@ -36,6 +37,7 @@ const DetailedPost = () => {
     const [comment, setComment] = useState('');
 
     const [data, setData] = useState({
+        username: '',
         likedPosts: {},
         createdPosts: {},
         level: '',
@@ -48,6 +50,9 @@ const DetailedPost = () => {
 
     const [modal, setModal] = useState(false);
     const toggle = () => setModal(!modal);
+
+    const [alertModal, setAlertModal] = useState(false);
+    const toggleAlert = () => setAlertModal(!alertModal);
 
     useEffect(() => {
         if (!userData) return;
@@ -131,7 +136,7 @@ const DetailedPost = () => {
                         </div>
                         <div id='avatar-detailed'>
                             {avatarLoading && <div id='avatar-loading'></div>}
-                            <img src={authorAvatar || defaultAvatar} alt='author-avatar' onClick={currPost.author === userData.username ? 
+                            <img src={authorAvatar || defaultAvatar} alt='author-avatar' onClick={currPost.author === data.username ? 
                         () => navigate(`/profile`) :
                         () => navigate(`/profile/${currPost.author}`)}/>
                         </div>
@@ -180,7 +185,7 @@ const DetailedPost = () => {
             </div>
 
             <div id='delete-section'>
-                {Object.keys(data.createdPosts).includes(id) || data.level === 'Admin' ? <button className='delete-btn' onClick={deleteCurrPost}>Delete</button> : null}
+                {Object.keys(data.createdPosts).includes(id) || data.level === 'Admin' ? <button className='delete-btn' onClick={toggleAlert}>Delete</button> : null}
             </div>
             {(currPost.title && currPost.content) && (
                 <EditPost
@@ -190,6 +195,11 @@ const DetailedPost = () => {
                     modal={modal}
                     toggleModel={toggle} />
             )}
+
+            <AlertDelete 
+                alertModal={alertModal}
+                toggleAlert={toggleAlert}
+                deleteFunction={deleteCurrPost} />
         </div>
     )
 }

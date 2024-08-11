@@ -26,8 +26,7 @@ const updatePostCount = async (username, sign = 'increment') => {
     });
 
 
-    if (newPostCount > 4) {
-        console.log(`User ${username} has become an admin!`);
+    if (newPostCount === 5) {
         return notifySuccess(`User ${username} has become an admin!`);
     } else if (newPostCount < 5) {
         console.log(`User ${username} has become a rookie!`);

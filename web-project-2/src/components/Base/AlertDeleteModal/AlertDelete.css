@@ -1,0 +1,30 @@
+.alert-delete {
+    background-color: #44633f;
+    padding: 20px;
+    border-radius: 8px;
+    width: 40%;
+    height: 25%;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.alert-delete h1 {
+    font-size: 35px;
+}
+
+.alert-delete button {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 20px;
+    padding: 10px 20px;
+    background-color: #323b2f;
+    color: #FBFEF9;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#final-delete-btn:hover {
+    background-color: #c52c2c;
+}

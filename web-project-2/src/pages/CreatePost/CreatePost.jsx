@@ -20,9 +20,6 @@ export default function CreatePost() {
         });
     };
 
-    console.log('create');
-    
-
     const handleCreatePost = async () => {
         if (post.title.length < constrains.POST_TITTLE_MIN_LENGTH || post.title.length > constrains.POST_TITTLE_MAX_LENGTH) {
             return notifyError(`Title must be between ${constrains.POST_TITTLE_MIN_LENGTH} and ${constrains.POST_TITTLE_MAX_LENGTH} characters!`);
