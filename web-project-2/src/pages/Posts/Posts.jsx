@@ -24,7 +24,7 @@ const Posts = () => {
     useEffect(() => {
     if (!snapshots) return;
     
-    setPosts([...snapshots]);
+    setPosts([...snapshots].sort(() => Math.random() - 0.5));
 }, [snapshots])
 
 

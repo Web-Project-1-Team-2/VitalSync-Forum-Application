@@ -93,4 +93,5 @@
     border-radius: 8px;
     border: 2px solid #FBFEF9;
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.705);
+    cursor: pointer;
 }

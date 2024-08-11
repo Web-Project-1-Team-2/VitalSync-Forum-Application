@@ -131,7 +131,9 @@ const DetailedPost = () => {
                         </div>
                         <div id='avatar-detailed'>
                             {avatarLoading && <div id='avatar-loading'></div>}
-                            <img src={authorAvatar || defaultAvatar} alt='author-avatar' />
+                            <img src={authorAvatar || defaultAvatar} alt='author-avatar' onClick={currPost.author === userData.username ? 
+                        () => navigate(`/profile`) :
+                        () => navigate(`/profile/${currPost.author}`)}/>
                         </div>
 
                     </div>

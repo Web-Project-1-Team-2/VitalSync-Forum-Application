@@ -13,6 +13,7 @@ import { db } from '../../../config/firebase-config';
 import { MdEdit } from "react-icons/md";
 import EditComment from '../EditComment/EditComment';
 import { defaultAvatar } from '../../../common/constrains';
+import { useNavigate } from 'react-router-dom';
 
 
 const Comment = ({ id, postId, author, content }) => {
@@ -33,6 +34,8 @@ const Comment = ({ id, postId, author, content }) => {
 
     const [modal, setModal] = useState(false);
     const toggle = () => setModal(!modal);
+
+    const navigate = useNavigate();
 
     useEffect(() => {
         if (!userData) return;
@@ -87,7 +90,9 @@ const Comment = ({ id, postId, author, content }) => {
             <div className='single-comment'>
                 <div id='comment-avatar'>
                     {avatarLoading && <div className='loading'></div>}
-                    <img src={authorAvatar || defaultAvatar} alt='avatar' />
+                    <img src={authorAvatar || defaultAvatar} alt='avatar' onClick={author === userData.username ? 
+                        () => navigate(`/profile`) :
+                        () => navigate(`/profile/${author}`)}/>
                 </div>
                 <div id='comment-contents'>
                     <div id='comment-author'>

@@ -25,6 +25,7 @@ import { useObjectVal } from 'react-firebase-hooks/database'
 import { ref } from 'firebase/database'
 import Admin from './pages/Admin/Admin';
 import Profile from './pages/Profile/Profile'
+import UserProfile from './pages/UserProfile/UserProfile'
 
 
 function App() {
@@ -76,6 +77,7 @@ function App() {
           <Route path='*' element={<PageNotFound />} />
           <Route path='/admin' element={<Admin />} />
           <Route path='/profile' element={<Authenticated><Profile /></Authenticated>} />
+          <Route path='/profile/:username' element={<UserProfile />} />
         </Routes>
       </Container>
       <Footer />

@@ -28,6 +28,8 @@ const PostLarge = ({ id, title, author, content, likes, commentCount, creationDa
     const [avatar, avatarLoading] = useObjectVal(ref(db, `users/${author}/avatar`));
     const [authorAvatar, setAuthorAvatar] = useState('');
 
+    const navigate = useNavigate();
+
     const displayCategory = (categ) => {
         switch (categ) {
             case 'training': return 'Training & Sport';
@@ -49,8 +51,6 @@ const PostLarge = ({ id, title, author, content, likes, commentCount, creationDa
         if (!avatar) return;
         setAuthorAvatar(avatar);
     }, [avatar]);
-
-    const navigate = useNavigate();
 
     const likeCurrPost = async () => {
         try {
@@ -76,7 +76,9 @@ const PostLarge = ({ id, title, author, content, likes, commentCount, creationDa
                 <div className='author-information-avatar'>
                     <div className='post-author-avatar'>
                         {avatarLoading && <p>Loading...</p>}
-                        <img src={authorAvatar || defaultAvatar} alt="avatar" />
+                        <img src={authorAvatar || defaultAvatar} alt="avatar" onClick={author === userData.username ? 
+                        () => navigate(`/profile`) :
+                        () => navigate(`/profile/${author}`)}/>
                     </div>
                     <h2>{author}</h2>
                 </div>

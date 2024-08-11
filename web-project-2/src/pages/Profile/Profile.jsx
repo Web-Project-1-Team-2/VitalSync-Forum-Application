@@ -72,6 +72,7 @@ const Profile = () => {
                 {loading && <h2>Loading...</h2>}
                 {posts
                 .filter(post => post.author === data.username)
+                .sort((a, b) => new Date(b.createdOn) - new Date(a.createdOn))
                 .map(post =>
                     <Post
                         key={post.id}
