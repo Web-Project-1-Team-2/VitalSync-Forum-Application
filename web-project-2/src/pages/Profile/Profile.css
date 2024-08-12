@@ -33,7 +33,7 @@
     cursor: pointer;
     z-index: 1000;
     position: absolute;
-    bottom: 5px; /* Adjust as needed */
+    bottom: 5px; 
     right: 5px;
     display: flex;
     justify-content: center;
@@ -70,18 +70,15 @@
 }
 
 #user-stats {
-    width: 340px;
+    width: 100%;
+    height: max-content;
     background-color: #323b2f;
     border-radius: 8px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    text-align: center;
     justify-content: flex-start;
-    position: fixed;
-    left: 69%;
     border: 2px solid #FBFEF9;
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.9);
-    margin: 0 0 15px 70px;
+    margin: 0 0 15px 0;
 }
 
 #user-stats > h2 {

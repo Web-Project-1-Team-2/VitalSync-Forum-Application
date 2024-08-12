@@ -6,10 +6,11 @@ import { Navigate, useLocation } from 'react-router-dom';
 const Authenticated = ({ children }) => {
 
     const { user } = useContext(AppContext);
+
     const location = useLocation()
-    // if (!user) {
-    //     return <Navigate replace to='/login' state={{ from: location }} />
-    // }
+    if (!user) {
+        return <Navigate replace to='/login' state={{ from: location }} />
+    }
 
     return (
         <>
