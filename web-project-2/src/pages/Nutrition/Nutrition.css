@@ -23,6 +23,7 @@
 .text {
   text-align: center;
   flex: 1; 
+  color: #FBFEF9;
 }
 
 .text h1 {

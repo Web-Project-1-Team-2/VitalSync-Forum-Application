@@ -40,8 +40,8 @@ function Homepage() {
       {loading && <h2>Loading...</h2>}
       <div className="count">
         {loadingUsers && <h2>Loading...</h2>}
-        Total posts at the moment:{posts.length} Total Users at the moment:
-        {users.length}
+        <span>Total posts at the moment:{posts.length}</span>
+        <span>Total Users at the moment:{users.length}</span>
       </div>
       <div className="top-grid">
         <NavLink to="/training" onClick={handleLinkClick}>

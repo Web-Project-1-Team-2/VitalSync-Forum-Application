@@ -46,7 +46,7 @@
     background-color: rgba(0, 0, 0, 0.5);
     opacity: 0;
     transition: opacity 0.3s ease;
-    border-radius: 8px; 
+    border-radius: 4px; 
     font-family: 'Bebas Neue', sans-serif;
     color: #FBFEF9;
     font-size: 20px;
@@ -62,12 +62,16 @@
     align-items: center;
     text-align: center;
     font-family: 'Bebas Neue', sans-serif;
-    font-size: 20px;
+    font-size: 25px;
     width: 100%; 
     margin-top: 0;
     padding: 20px;
     color: #FBFEF9;
   }
+
+  .count > span {
+    margin-right: 40px; 
+ }
 
   .bottom-grid  h2 {
     color: #FBFEF9;
