@@ -6,7 +6,6 @@
 }
 .top-grid {
     display: flex;
-
     align-items: center;
     gap: 10px;
     margin-bottom: 10px;
@@ -28,6 +27,35 @@
     gap: 20px;
   }
 
+  .image-container {
+    position: relative;
+    width: 100%; 
+    height: auto;
+ }
+ 
+  .hover-text {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    background-color: rgba(0, 0, 0, 0.5);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    border-radius: 8px; 
+    font-family: 'Bebas Neue', sans-serif;
+    color: #FBFEF9;
+    font-size: 20px;
+ }
+ 
+ .image-container:hover .hover-text {
+  opacity: 1;
+}
+
   .count {
     display: flex;
     justify-content: center;
@@ -38,4 +66,9 @@
     width: 100%; 
     margin-top: 0;
     padding: 20px;
+    color: #FBFEF9;
+  }
+
+  .bottom-grid  h2 {
+    color: #FBFEF9;
   }

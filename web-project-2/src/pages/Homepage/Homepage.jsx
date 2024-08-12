@@ -45,25 +45,34 @@ function Homepage() {
       </div>
       <div className="top-grid">
         <NavLink to="/training" onClick={handleLinkClick}>
+        <div className="image-container">
           <img
             src="/athlete.jpg"
             alt="Go to training picture"
             className="links"
           />
+          <div className="hover-text">Go to Training Page</div>
+          </div>
         </NavLink>
         <NavLink to="/nutrition" onClick={handleLinkClick}>
+        <div className="image-container">
           <img
             src="/nutrition3.webp"
             alt="Go to nutrition picture"
             className="links"
           />
+          <div className="hover-text">Go to Nutrition Page</div>
+          </div>
         </NavLink>
         <NavLink to="/supplements" onClick={handleLinkClick}>
+        <div className="image-container">
           <img
             src="/sup.jpg"
             alt="Go to supplements picture"
             className="links"
           />
+          <div className="hover-text">Go to Supplements Page</div>
+          </div>
         </NavLink>      
       </div>
 
