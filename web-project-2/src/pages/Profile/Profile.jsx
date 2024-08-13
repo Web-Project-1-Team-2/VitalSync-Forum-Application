@@ -25,6 +25,7 @@ const Profile = () => {
 
     const [posts, setPosts] = useState([]);
     const [snapshots, loading] = useListVals(ref(db, 'posts'));
+    const [currUserPost, setCurrUserPost] = useState([]);
 
     const [modal, setModal] = useState(false);
     const toggle = () => setModal(!modal);
@@ -46,6 +47,11 @@ const Profile = () => {
         if (!snapshots) return;
         setPosts([...snapshots]);
     }, [snapshots])
+
+    useEffect(() => {
+        if(!posts) return;
+        setCurrUserPost(posts.filter(post => post.author === data.username));
+    }, [posts, data.username])
 
 
 
@@ -70,8 +76,8 @@ const Profile = () => {
 
             <div id='created-posts'>
                 {loading && <h2>Loading...</h2>}
-                {posts
-                .filter(post => post.author === data.username)
+                {currUserPost.length > 0 ? 
+                currUserPost
                 .sort((a, b) => new Date(b.createdOn) - new Date(a.createdOn))
                 .map(post =>
                     <Post
@@ -83,7 +89,7 @@ const Profile = () => {
                         likes={post.likes || 0}
                         commentCount={post.commentCount || 0}
                         creationDate={new Date(post.createdOn).toLocaleDateString()}
-                        category={post.category} />)}
+                        category={post.category} />) : <h2>No posts created yet!</h2>}
             </div>
 
             <div id='user-stats'>
