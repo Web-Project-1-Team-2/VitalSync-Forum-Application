@@ -55,9 +55,7 @@ function App() {
   useEffect(() => {
     if (!currentUser) return;
     setAppState({ ...state, userData: currentUser });
-  }, [currentUser])
-
-
+  }, [currentUser, state.userData])
 
 
   return (

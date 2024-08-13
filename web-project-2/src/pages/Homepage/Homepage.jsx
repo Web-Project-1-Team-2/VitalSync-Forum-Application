@@ -33,8 +33,6 @@ function Homepage() {
     }
   }, [snapshotsUsers]);
 
-  console.log("!");
-
   return (
     <div className="homepage">
       {loading && <h2>Loading...</h2>}

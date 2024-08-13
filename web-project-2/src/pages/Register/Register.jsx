@@ -37,7 +37,7 @@ const Register = () => {
         }
         if (!user.username || user.username.length < constrains.NAMES_MIN_LENGTH || user.username.length > constrains.NAMES_MAX_LENGTH) {
             notifyError('Please enter a valid username')
-            setAppState({
+            setUser({
                 ...user,
                 username: '',
             })
@@ -45,7 +45,7 @@ const Register = () => {
         }
         if (!user.firstName || user.firstName.length < constrains.NAMES_MIN_LENGTH || user.firstName.length > constrains.NAMES_MAX_LENGTH) {
             notifyError('Please enter a valid firs name')
-            setAppState({
+            setUser({
                 ...user,
                 firstName: '',
             })
@@ -53,7 +53,7 @@ const Register = () => {
         }
         if (!user.lastName || user.lastName.length < constrains.NAMES_MIN_LENGTH || user.lastName.length > constrains.NAMES_MAX_LENGTH) {
             notifyError('Please enter a valid last name')
-            setAppState({
+            setUser({
                 ...user,
                 lastName: '',
             })
@@ -66,7 +66,7 @@ const Register = () => {
         }
         if (!user.password.split('').some(char => char !== ' ' && !isNaN(char))) {
             notifyError('Password must contain at least one number');
-            setAppState({
+            setUser({
                 ...user,
                 password: '',
             })
@@ -77,7 +77,7 @@ const Register = () => {
         console.log(dbUser);
         if (dbUser) {
             notifyError('User already exists');
-            setAppState({
+            setUser({
                 username: '',
                 firstName: '',
                 lastName: '',
@@ -95,7 +95,6 @@ const Register = () => {
                 user: credential.user,
                 userData: null,
             });
-            console.log(credential);
 
             notifySuccess('Registration successful, redirecting to home page');
             setTimeout(() => { navigate(location.state?.from.pathname ?? '/') }, 1000);
