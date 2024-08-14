@@ -45,17 +45,21 @@ function App() {
   useEffect(() => {
     if (!user) return;
 
-    getUserData(state.user.uid)
+    setTimeout(() => {
+      getUserData(state.user.uid)
       .then(data => {
         const userData = data[Object.keys(data)[0]];
         setAppState({ ...state, userData: userData });
       })
+    }, 100)
   }, [user])
 
   useEffect(() => {
     if (!currentUser) return;
-    setAppState({ ...state, userData: currentUser });
-  }, [currentUser, state.userData])
+    setTimeout(() => {
+      setAppState({ ...state, userData: currentUser });
+    }, 100)
+  }, [currentUser])
 
 
   return (
