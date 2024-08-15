@@ -90,7 +90,7 @@ const Comment = ({ id, postId, author, content }) => {
             <div className='single-comment'>
                 <div id='comment-avatar'>
                     {avatarLoading && <div className='loading'></div>}
-                    <img src={authorAvatar || defaultAvatar} alt='avatar' onClick={author === userData.username ? 
+                    <img src={authorAvatar || defaultAvatar} alt='avatar' onClick={author === data.username ? 
                         () => navigate(`/profile`) :
                         () => navigate(`/profile/${author}`)}/>
                 </div>
@@ -125,7 +125,6 @@ const Comment = ({ id, postId, author, content }) => {
                     )}
                 </div>
             </div>
-
         </>
     )
 }
