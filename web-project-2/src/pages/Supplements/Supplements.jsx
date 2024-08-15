@@ -9,7 +9,6 @@ function Supplements() {
   const [posts, setPosts] = useState([]);
   const [snapshots, loading] = useListVals(ref(db, "posts"));
 
-
   useEffect(() => {
     if (snapshots) {
       setPosts([...snapshots]);

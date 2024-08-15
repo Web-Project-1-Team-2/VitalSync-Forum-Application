@@ -1,15 +1,14 @@
-import { useEffect, useState } from 'react';
-import './Training.css'
-import { useListVals } from 'react-firebase-hooks/database';
-import { db } from '../../config/firebase-config';
-import { ref } from 'firebase/database';
+import { useEffect, useState } from "react";
+import "./Training.css";
+import { useListVals } from "react-firebase-hooks/database";
+import { db } from "../../config/firebase-config";
+import { ref } from "firebase/database";
 
-import PostLarge from '../../components/Base/Post/PostLarge';
+import PostLarge from "../../components/Base/Post/PostLarge";
 
 function Training() {
   const [posts, setPosts] = useState([]);
-  const [snapshots, loading] = useListVals(ref(db, 'posts'));
- 
+  const [snapshots, loading] = useListVals(ref(db, "posts"));
 
   useEffect(() => {
     if (snapshots) {
@@ -19,7 +18,6 @@ function Training() {
 
   return (
     <div className="training-container">
-      
       <div className="top-grid">
         <img src="/athlete.jpg" alt="Training" className="image" />
         <div className="text">
@@ -34,21 +32,23 @@ function Training() {
         <img src="/training2.avif" alt="Training" className="image" />
       </div>
 
-      
       <div className="training-grid">
-        {posts.filter(post => post.category === 'training').length !== 0 ? (
+        {posts.filter((post) => post.category === "training").length !== 0 ? (
           posts
-            .filter(post => post.category === 'training')
-            .map(post => (<PostLarge
-              key={post.id}
-              id={post.id}
-              title={post.title}
-              author={post.author}
-              content={post.content}
-              likes={post.likes || 0}
-              commentCount={post.commentCount || 0}
-              creationDate={new Date(post.createdOn).toLocaleDateString()}
-              category={post.category} /> ))
+            .filter((post) => post.category === "training")
+            .map((post) => (
+              <PostLarge
+                key={post.id}
+                id={post.id}
+                title={post.title}
+                author={post.author}
+                content={post.content}
+                likes={post.likes || 0}
+                commentCount={post.commentCount || 0}
+                creationDate={new Date(post.createdOn).toLocaleDateString()}
+                category={post.category}
+              />
+            ))
         ) : (
           <h2>No posts found</h2>
         )}
